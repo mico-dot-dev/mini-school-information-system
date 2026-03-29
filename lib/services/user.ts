@@ -32,7 +32,7 @@ export async function GetUserRole() {
     const { data: serverUser, error } = await supabaseServer.auth.getUser();
     const user = serverUser.user;
 
-    const userRole = await prisma.user.findUnique({
+    const userRole = await prisma.user.findFirst({
       where: { email: user?.email || undefined },
       select: { role: true },
     });
