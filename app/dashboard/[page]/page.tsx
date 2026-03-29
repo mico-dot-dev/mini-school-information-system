@@ -1,6 +1,7 @@
-import { notFound } from "next/navigation";
 import React from "react";
+import { notFound } from "next/navigation";
 import DashboardTable from "@/app/component/DashboardTable";
+import { Page } from "@/lib/enum/page";
 
 interface DashboardPageProps {
   params: { page: string };
@@ -8,8 +9,10 @@ interface DashboardPageProps {
 
 export default async function MainPage({ params }: DashboardPageProps) {
   const { page } = await params;
-  const allowedPages = new Set(["Courses", "Users", "Subjects", "Students"]);
-  if (!allowedPages.has(page)) notFound();
+  //Checks whether the slug sent a page name that exists
+  const isValidPage =
+    typeof page === "string" && Object.values(Page).includes(page as Page);
+  if (!isValidPage) notFound();
 
   return (
     <div className="flex flex-col w-full h-full">

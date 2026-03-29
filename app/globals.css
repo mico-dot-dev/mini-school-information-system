@@ -9,6 +9,7 @@
   --tableHead: #fcfdfd;
   --tableHeadOutline: #d5d5d5;
   --tableBodyOutline: #b9b9b9;
+  --redAlert: #ff0000;
 }
 
 @theme inline {
@@ -20,4 +21,5 @@
   --color-tableHead: var(--tableHead);
   --color-tableHeadOutline: var(--tableHeadOutline);
   --color-tableBodyOutline: var(--tableBodyOutline);
+  --color-redAlert: var(--redAlert);
 }

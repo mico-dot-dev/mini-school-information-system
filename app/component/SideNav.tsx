@@ -1,23 +1,29 @@
-import Link from "next/link";
-import React from "react";
+"use server";
 
-function SideNav() {
-  const pages: Set<string> = new Set([
-    "Students",
-    "Courses",
-    "Subjects",
-    "Users",
-  ]);
+import React from "react";
+import Link from "next/link";
+import { Page, PagePermissions } from "@/lib/enum/page";
+import { hasPermission } from "@/lib/auth/rbac";
+import { Role } from "@/lib/enum/role";
+import { GetUserRole } from "@/lib/services/user";
+
+async function SideNav() {
+  const userRole = (await GetUserRole()) as Role;
+
   return (
     <nav className=" flex bg-foreground min-h-full max-h-screen w-1/5">
       <div className=" flex-1 flex-col text-white ml-10 my-10   relative">
         <p className="text-5xl font-bold mb-25">SCHL</p>
         <ol className="text-base flex flex-col gap-10 ">
-          {Array.from(pages).map((page) => (
-            <li key={page}>
-              <Link href={`/dashboard/${page}`}>{page}</Link>
-            </li>
-          ))}
+          {/* Loops through the Page enum and checks the role and permissions to provide the nav link */}
+          {Object.values(Page).map((page) => {
+            if (!hasPermission(userRole, PagePermissions[page])) return null;
+            return (
+              <li key={page}>
+                <Link href={`/dashboard/${page}`}>{page}</Link>
+              </li>
+            );
+          })}
         </ol>
         <p className="absolute bottom-0">Logout</p>
       </div>
