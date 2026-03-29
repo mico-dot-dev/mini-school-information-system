@@ -48,7 +48,7 @@ function LoginForm() {
       <button className="self-start"> Forgot Password?</button>
       <button
         type="submit"
-        className="text-white bg-button p-3 rounded-2xl font-bold cursor-pointer:"
+        className="text-white bg-button p-3 rounded-2xl font-bold cursor-pointer"
       >
         Login
       </button>
