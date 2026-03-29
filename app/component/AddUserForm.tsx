@@ -32,7 +32,7 @@ function AddUserForm() {
     }
   }
   return (
-    <div className=" w-[95%] h-11/12 flex flex-col">
+    <div className="">
       <header className="text-2xl font-bold mb-10">New User Information</header>
       <form onSubmit={handleSubmit(createUser)} autoComplete="off">
         <div className="text-base flex flex-col gap-5 mb-30">
@@ -91,8 +91,11 @@ function AddUserForm() {
               {...register("role")}
               className="h-15 w-1/2 indent-3 border border-inputBorder rounded-xl cursor-pointer"
             >
-              <option value={Role.Encoder}>Encoder</option>
-              <option value={Role.Admin}>Admin</option>
+              {Object.values(Role).map((role) => (
+                <option key={role} value={role}>
+                  {role}
+                </option>
+              ))}
             </select>
           </div>
         </div>

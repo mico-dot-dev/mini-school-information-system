@@ -53,6 +53,11 @@ export type user = $Result.DefaultSelection<Prisma.$userPayload>
  * This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
  */
 export type general_subject = $Result.DefaultSelection<Prisma.$general_subjectPayload>
+/**
+ * Model degree_level
+ * This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+ */
+export type degree_level = $Result.DefaultSelection<Prisma.$degree_levelPayload>
 
 /**
  * Enums
@@ -271,6 +276,16 @@ export class PrismaClient<
     * ```
     */
   get general_subject(): Prisma.general_subjectDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.degree_level`: Exposes CRUD operations for the **degree_level** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Degree_levels
+    * const degree_levels = await prisma.degree_level.findMany()
+    * ```
+    */
+  get degree_level(): Prisma.degree_levelDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -712,7 +727,8 @@ export namespace Prisma {
     subject_prerequisite: 'subject_prerequisite',
     subject_reservation: 'subject_reservation',
     user: 'user',
-    general_subject: 'general_subject'
+    general_subject: 'general_subject',
+    degree_level: 'degree_level'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -728,7 +744,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "course" | "grade" | "student" | "subject" | "subject_prerequisite" | "subject_reservation" | "user" | "general_subject"
+      modelProps: "course" | "grade" | "student" | "subject" | "subject_prerequisite" | "subject_reservation" | "user" | "general_subject" | "degree_level"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1324,6 +1340,80 @@ export namespace Prisma {
           }
         }
       }
+      degree_level: {
+        payload: Prisma.$degree_levelPayload<ExtArgs>
+        fields: Prisma.degree_levelFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.degree_levelFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$degree_levelPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.degree_levelFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$degree_levelPayload>
+          }
+          findFirst: {
+            args: Prisma.degree_levelFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$degree_levelPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.degree_levelFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$degree_levelPayload>
+          }
+          findMany: {
+            args: Prisma.degree_levelFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$degree_levelPayload>[]
+          }
+          create: {
+            args: Prisma.degree_levelCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$degree_levelPayload>
+          }
+          createMany: {
+            args: Prisma.degree_levelCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.degree_levelCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$degree_levelPayload>[]
+          }
+          delete: {
+            args: Prisma.degree_levelDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$degree_levelPayload>
+          }
+          update: {
+            args: Prisma.degree_levelUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$degree_levelPayload>
+          }
+          deleteMany: {
+            args: Prisma.degree_levelDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.degree_levelUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.degree_levelUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$degree_levelPayload>[]
+          }
+          upsert: {
+            args: Prisma.degree_levelUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$degree_levelPayload>
+          }
+          aggregate: {
+            args: Prisma.Degree_levelAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateDegree_level>
+          }
+          groupBy: {
+            args: Prisma.degree_levelGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Degree_levelGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.degree_levelCountArgs<ExtArgs>
+            result: $Utils.Optional<Degree_levelCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1440,6 +1530,7 @@ export namespace Prisma {
     subject_reservation?: subject_reservationOmit
     user?: userOmit
     general_subject?: general_subjectOmit
+    degree_level?: degree_levelOmit
   }
 
   /* Types for Logging */
@@ -1694,33 +1785,33 @@ export namespace Prisma {
 
 
   /**
-   * Count Type General_subjectCountOutputType
+   * Count Type Degree_levelCountOutputType
    */
 
-  export type General_subjectCountOutputType = {
-    subject: number
+  export type Degree_levelCountOutputType = {
+    course: number
   }
 
-  export type General_subjectCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    subject?: boolean | General_subjectCountOutputTypeCountSubjectArgs
+  export type Degree_levelCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    course?: boolean | Degree_levelCountOutputTypeCountCourseArgs
   }
 
   // Custom InputTypes
   /**
-   * General_subjectCountOutputType without action
+   * Degree_levelCountOutputType without action
    */
-  export type General_subjectCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+  export type Degree_levelCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     /**
-     * Select specific fields to fetch from the General_subjectCountOutputType
+     * Select specific fields to fetch from the Degree_levelCountOutputType
      */
-    select?: General_subjectCountOutputTypeSelect<ExtArgs> | null
+    select?: Degree_levelCountOutputTypeSelect<ExtArgs> | null
   }
 
   /**
-   * General_subjectCountOutputType without action
+   * Degree_levelCountOutputType without action
    */
-  export type General_subjectCountOutputTypeCountSubjectArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: subjectWhereInput
+  export type Degree_levelCountOutputTypeCountCourseArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: courseWhereInput
   }
 
 
@@ -1742,10 +1833,12 @@ export namespace Prisma {
 
   export type CourseAvgAggregateOutputType = {
     id: number | null
+    degree_level_id: number | null
   }
 
   export type CourseSumAggregateOutputType = {
     id: bigint | null
+    degree_level_id: bigint | null
   }
 
   export type CourseMinAggregateOutputType = {
@@ -1755,6 +1848,7 @@ export namespace Prisma {
     code: string | null
     name: string | null
     description: string | null
+    degree_level_id: bigint | null
   }
 
   export type CourseMaxAggregateOutputType = {
@@ -1764,6 +1858,7 @@ export namespace Prisma {
     code: string | null
     name: string | null
     description: string | null
+    degree_level_id: bigint | null
   }
 
   export type CourseCountAggregateOutputType = {
@@ -1773,16 +1868,19 @@ export namespace Prisma {
     code: number
     name: number
     description: number
+    degree_level_id: number
     _all: number
   }
 
 
   export type CourseAvgAggregateInputType = {
     id?: true
+    degree_level_id?: true
   }
 
   export type CourseSumAggregateInputType = {
     id?: true
+    degree_level_id?: true
   }
 
   export type CourseMinAggregateInputType = {
@@ -1792,6 +1890,7 @@ export namespace Prisma {
     code?: true
     name?: true
     description?: true
+    degree_level_id?: true
   }
 
   export type CourseMaxAggregateInputType = {
@@ -1801,6 +1900,7 @@ export namespace Prisma {
     code?: true
     name?: true
     description?: true
+    degree_level_id?: true
   }
 
   export type CourseCountAggregateInputType = {
@@ -1810,6 +1910,7 @@ export namespace Prisma {
     code?: true
     name?: true
     description?: true
+    degree_level_id?: true
     _all?: true
   }
 
@@ -1906,6 +2007,7 @@ export namespace Prisma {
     code: string
     name: string
     description: string | null
+    degree_level_id: bigint | null
     _count: CourseCountAggregateOutputType | null
     _avg: CourseAvgAggregateOutputType | null
     _sum: CourseSumAggregateOutputType | null
@@ -1934,6 +2036,8 @@ export namespace Prisma {
     code?: boolean
     name?: boolean
     description?: boolean
+    degree_level_id?: boolean
+    degree_level?: boolean | course$degree_levelArgs<ExtArgs>
     grade?: boolean | course$gradeArgs<ExtArgs>
     student?: boolean | course$studentArgs<ExtArgs>
     subject?: boolean | course$subjectArgs<ExtArgs>
@@ -1947,6 +2051,8 @@ export namespace Prisma {
     code?: boolean
     name?: boolean
     description?: boolean
+    degree_level_id?: boolean
+    degree_level?: boolean | course$degree_levelArgs<ExtArgs>
   }, ExtArgs["result"]["course"]>
 
   export type courseSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1956,6 +2062,8 @@ export namespace Prisma {
     code?: boolean
     name?: boolean
     description?: boolean
+    degree_level_id?: boolean
+    degree_level?: boolean | course$degree_levelArgs<ExtArgs>
   }, ExtArgs["result"]["course"]>
 
   export type courseSelectScalar = {
@@ -1965,21 +2073,28 @@ export namespace Prisma {
     code?: boolean
     name?: boolean
     description?: boolean
+    degree_level_id?: boolean
   }
 
-  export type courseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "created_at" | "updated_at" | "code" | "name" | "description", ExtArgs["result"]["course"]>
+  export type courseOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "created_at" | "updated_at" | "code" | "name" | "description" | "degree_level_id", ExtArgs["result"]["course"]>
   export type courseInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    degree_level?: boolean | course$degree_levelArgs<ExtArgs>
     grade?: boolean | course$gradeArgs<ExtArgs>
     student?: boolean | course$studentArgs<ExtArgs>
     subject?: boolean | course$subjectArgs<ExtArgs>
     _count?: boolean | CourseCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type courseIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type courseIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type courseIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    degree_level?: boolean | course$degree_levelArgs<ExtArgs>
+  }
+  export type courseIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    degree_level?: boolean | course$degree_levelArgs<ExtArgs>
+  }
 
   export type $coursePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "course"
     objects: {
+      degree_level: Prisma.$degree_levelPayload<ExtArgs> | null
       grade: Prisma.$gradePayload<ExtArgs>[]
       student: Prisma.$studentPayload<ExtArgs>[]
       subject: Prisma.$subjectPayload<ExtArgs>[]
@@ -1991,6 +2106,7 @@ export namespace Prisma {
       code: string
       name: string
       description: string | null
+      degree_level_id: bigint | null
     }, ExtArgs["result"]["course"]>
     composites: {}
   }
@@ -2385,6 +2501,7 @@ export namespace Prisma {
    */
   export interface Prisma__courseClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    degree_level<T extends course$degree_levelArgs<ExtArgs> = {}>(args?: Subset<T, course$degree_levelArgs<ExtArgs>>): Prisma__degree_levelClient<$Result.GetResult<Prisma.$degree_levelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     grade<T extends course$gradeArgs<ExtArgs> = {}>(args?: Subset<T, course$gradeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gradePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     student<T extends course$studentArgs<ExtArgs> = {}>(args?: Subset<T, course$studentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$studentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     subject<T extends course$subjectArgs<ExtArgs> = {}>(args?: Subset<T, course$subjectArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$subjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -2423,6 +2540,7 @@ export namespace Prisma {
     readonly code: FieldRef<"course", 'String'>
     readonly name: FieldRef<"course", 'String'>
     readonly description: FieldRef<"course", 'String'>
+    readonly degree_level_id: FieldRef<"course", 'BigInt'>
   }
     
 
@@ -2677,6 +2795,10 @@ export namespace Prisma {
      */
     data: courseCreateManyInput | courseCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: courseIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -2747,6 +2869,10 @@ export namespace Prisma {
      * Limit how many courses to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: courseIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -2813,6 +2939,25 @@ export namespace Prisma {
      * Limit how many courses to delete.
      */
     limit?: number
+  }
+
+  /**
+   * course.degree_level
+   */
+  export type course$degree_levelArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the degree_level
+     */
+    select?: degree_levelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the degree_level
+     */
+    omit?: degree_levelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: degree_levelInclude<ExtArgs> | null
+    where?: degree_levelWhereInput
   }
 
   /**
@@ -4257,6 +4402,7 @@ export namespace Prisma {
     email: string | null
     birth_date: Date | null
     course_id: bigint | null
+    student_no: string | null
   }
 
   export type StudentMaxAggregateOutputType = {
@@ -4268,6 +4414,7 @@ export namespace Prisma {
     email: string | null
     birth_date: Date | null
     course_id: bigint | null
+    student_no: string | null
   }
 
   export type StudentCountAggregateOutputType = {
@@ -4279,6 +4426,7 @@ export namespace Prisma {
     email: number
     birth_date: number
     course_id: number
+    student_no: number
     _all: number
   }
 
@@ -4302,6 +4450,7 @@ export namespace Prisma {
     email?: true
     birth_date?: true
     course_id?: true
+    student_no?: true
   }
 
   export type StudentMaxAggregateInputType = {
@@ -4313,6 +4462,7 @@ export namespace Prisma {
     email?: true
     birth_date?: true
     course_id?: true
+    student_no?: true
   }
 
   export type StudentCountAggregateInputType = {
@@ -4324,6 +4474,7 @@ export namespace Prisma {
     email?: true
     birth_date?: true
     course_id?: true
+    student_no?: true
     _all?: true
   }
 
@@ -4422,6 +4573,7 @@ export namespace Prisma {
     email: string | null
     birth_date: Date
     course_id: bigint
+    student_no: string
     _count: StudentCountAggregateOutputType | null
     _avg: StudentAvgAggregateOutputType | null
     _sum: StudentSumAggregateOutputType | null
@@ -4452,6 +4604,7 @@ export namespace Prisma {
     email?: boolean
     birth_date?: boolean
     course_id?: boolean
+    student_no?: boolean
     grade?: boolean | student$gradeArgs<ExtArgs>
     course?: boolean | courseDefaultArgs<ExtArgs>
     subject_reservation?: boolean | student$subject_reservationArgs<ExtArgs>
@@ -4467,6 +4620,7 @@ export namespace Prisma {
     email?: boolean
     birth_date?: boolean
     course_id?: boolean
+    student_no?: boolean
     course?: boolean | courseDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["student"]>
 
@@ -4479,6 +4633,7 @@ export namespace Prisma {
     email?: boolean
     birth_date?: boolean
     course_id?: boolean
+    student_no?: boolean
     course?: boolean | courseDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["student"]>
 
@@ -4491,9 +4646,10 @@ export namespace Prisma {
     email?: boolean
     birth_date?: boolean
     course_id?: boolean
+    student_no?: boolean
   }
 
-  export type studentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "created_at" | "updated_at" | "first_name" | "last_name" | "email" | "birth_date" | "course_id", ExtArgs["result"]["student"]>
+  export type studentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "created_at" | "updated_at" | "first_name" | "last_name" | "email" | "birth_date" | "course_id" | "student_no", ExtArgs["result"]["student"]>
   export type studentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     grade?: boolean | student$gradeArgs<ExtArgs>
     course?: boolean | courseDefaultArgs<ExtArgs>
@@ -4523,6 +4679,7 @@ export namespace Prisma {
       email: string | null
       birth_date: Date
       course_id: bigint
+      student_no: string
     }, ExtArgs["result"]["student"]>
     composites: {}
   }
@@ -4957,6 +5114,7 @@ export namespace Prisma {
     readonly email: FieldRef<"student", 'String'>
     readonly birth_date: FieldRef<"student", 'DateTime'>
     readonly course_id: FieldRef<"student", 'BigInt'>
+    readonly student_no: FieldRef<"student", 'String'>
   }
     
 
@@ -5440,14 +5598,12 @@ export namespace Prisma {
     id: number | null
     units: number | null
     course_id: number | null
-    general_subject_id: number | null
   }
 
   export type SubjectSumAggregateOutputType = {
     id: bigint | null
     units: number | null
     course_id: bigint | null
-    general_subject_id: bigint | null
   }
 
   export type SubjectMinAggregateOutputType = {
@@ -5458,7 +5614,6 @@ export namespace Prisma {
     units: number | null
     updated_at: Date | null
     course_id: bigint | null
-    general_subject_id: bigint | null
   }
 
   export type SubjectMaxAggregateOutputType = {
@@ -5469,7 +5624,6 @@ export namespace Prisma {
     units: number | null
     updated_at: Date | null
     course_id: bigint | null
-    general_subject_id: bigint | null
   }
 
   export type SubjectCountAggregateOutputType = {
@@ -5480,7 +5634,6 @@ export namespace Prisma {
     units: number
     updated_at: number
     course_id: number
-    general_subject_id: number
     _all: number
   }
 
@@ -5489,14 +5642,12 @@ export namespace Prisma {
     id?: true
     units?: true
     course_id?: true
-    general_subject_id?: true
   }
 
   export type SubjectSumAggregateInputType = {
     id?: true
     units?: true
     course_id?: true
-    general_subject_id?: true
   }
 
   export type SubjectMinAggregateInputType = {
@@ -5507,7 +5658,6 @@ export namespace Prisma {
     units?: true
     updated_at?: true
     course_id?: true
-    general_subject_id?: true
   }
 
   export type SubjectMaxAggregateInputType = {
@@ -5518,7 +5668,6 @@ export namespace Prisma {
     units?: true
     updated_at?: true
     course_id?: true
-    general_subject_id?: true
   }
 
   export type SubjectCountAggregateInputType = {
@@ -5529,7 +5678,6 @@ export namespace Prisma {
     units?: true
     updated_at?: true
     course_id?: true
-    general_subject_id?: true
     _all?: true
   }
 
@@ -5627,7 +5775,6 @@ export namespace Prisma {
     units: number
     updated_at: Date | null
     course_id: bigint
-    general_subject_id: bigint | null
     _count: SubjectCountAggregateOutputType | null
     _avg: SubjectAvgAggregateOutputType | null
     _sum: SubjectSumAggregateOutputType | null
@@ -5657,10 +5804,8 @@ export namespace Prisma {
     units?: boolean
     updated_at?: boolean
     course_id?: boolean
-    general_subject_id?: boolean
     grade?: boolean | subject$gradeArgs<ExtArgs>
     course?: boolean | courseDefaultArgs<ExtArgs>
-    general_subject?: boolean | subject$general_subjectArgs<ExtArgs>
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: boolean | subject$subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubjectArgs<ExtArgs>
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: boolean | subject$subject_prerequisite_subject_prerequisite_subject_idTosubjectArgs<ExtArgs>
     subject_reservation?: boolean | subject$subject_reservationArgs<ExtArgs>
@@ -5675,9 +5820,7 @@ export namespace Prisma {
     units?: boolean
     updated_at?: boolean
     course_id?: boolean
-    general_subject_id?: boolean
     course?: boolean | courseDefaultArgs<ExtArgs>
-    general_subject?: boolean | subject$general_subjectArgs<ExtArgs>
   }, ExtArgs["result"]["subject"]>
 
   export type subjectSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -5688,9 +5831,7 @@ export namespace Prisma {
     units?: boolean
     updated_at?: boolean
     course_id?: boolean
-    general_subject_id?: boolean
     course?: boolean | courseDefaultArgs<ExtArgs>
-    general_subject?: boolean | subject$general_subjectArgs<ExtArgs>
   }, ExtArgs["result"]["subject"]>
 
   export type subjectSelectScalar = {
@@ -5701,14 +5842,12 @@ export namespace Prisma {
     units?: boolean
     updated_at?: boolean
     course_id?: boolean
-    general_subject_id?: boolean
   }
 
-  export type subjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "created_at" | "code" | "title" | "units" | "updated_at" | "course_id" | "general_subject_id", ExtArgs["result"]["subject"]>
+  export type subjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "created_at" | "code" | "title" | "units" | "updated_at" | "course_id", ExtArgs["result"]["subject"]>
   export type subjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     grade?: boolean | subject$gradeArgs<ExtArgs>
     course?: boolean | courseDefaultArgs<ExtArgs>
-    general_subject?: boolean | subject$general_subjectArgs<ExtArgs>
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: boolean | subject$subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubjectArgs<ExtArgs>
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: boolean | subject$subject_prerequisite_subject_prerequisite_subject_idTosubjectArgs<ExtArgs>
     subject_reservation?: boolean | subject$subject_reservationArgs<ExtArgs>
@@ -5716,11 +5855,9 @@ export namespace Prisma {
   }
   export type subjectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     course?: boolean | courseDefaultArgs<ExtArgs>
-    general_subject?: boolean | subject$general_subjectArgs<ExtArgs>
   }
   export type subjectIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     course?: boolean | courseDefaultArgs<ExtArgs>
-    general_subject?: boolean | subject$general_subjectArgs<ExtArgs>
   }
 
   export type $subjectPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5728,7 +5865,6 @@ export namespace Prisma {
     objects: {
       grade: Prisma.$gradePayload<ExtArgs>[]
       course: Prisma.$coursePayload<ExtArgs>
-      general_subject: Prisma.$general_subjectPayload<ExtArgs> | null
       subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject: Prisma.$subject_prerequisitePayload<ExtArgs>[]
       subject_prerequisite_subject_prerequisite_subject_idTosubject: Prisma.$subject_prerequisitePayload<ExtArgs>[]
       subject_reservation: Prisma.$subject_reservationPayload<ExtArgs>[]
@@ -5741,7 +5877,6 @@ export namespace Prisma {
       units: number
       updated_at: Date | null
       course_id: bigint
-      general_subject_id: bigint | null
     }, ExtArgs["result"]["subject"]>
     composites: {}
   }
@@ -6138,7 +6273,6 @@ export namespace Prisma {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     grade<T extends subject$gradeArgs<ExtArgs> = {}>(args?: Subset<T, subject$gradeArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$gradePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     course<T extends courseDefaultArgs<ExtArgs> = {}>(args?: Subset<T, courseDefaultArgs<ExtArgs>>): Prisma__courseClient<$Result.GetResult<Prisma.$coursePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
-    general_subject<T extends subject$general_subjectArgs<ExtArgs> = {}>(args?: Subset<T, subject$general_subjectArgs<ExtArgs>>): Prisma__general_subjectClient<$Result.GetResult<Prisma.$general_subjectPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject<T extends subject$subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubjectArgs<ExtArgs> = {}>(args?: Subset<T, subject$subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubjectArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$subject_prerequisitePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     subject_prerequisite_subject_prerequisite_subject_idTosubject<T extends subject$subject_prerequisite_subject_prerequisite_subject_idTosubjectArgs<ExtArgs> = {}>(args?: Subset<T, subject$subject_prerequisite_subject_prerequisite_subject_idTosubjectArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$subject_prerequisitePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     subject_reservation<T extends subject$subject_reservationArgs<ExtArgs> = {}>(args?: Subset<T, subject$subject_reservationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$subject_reservationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
@@ -6178,7 +6312,6 @@ export namespace Prisma {
     readonly units: FieldRef<"subject", 'Int'>
     readonly updated_at: FieldRef<"subject", 'DateTime'>
     readonly course_id: FieldRef<"subject", 'BigInt'>
-    readonly general_subject_id: FieldRef<"subject", 'BigInt'>
   }
     
 
@@ -6601,25 +6734,6 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: GradeScalarFieldEnum | GradeScalarFieldEnum[]
-  }
-
-  /**
-   * subject.general_subject
-   */
-  export type subject$general_subjectArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the general_subject
-     */
-    select?: general_subjectSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the general_subject
-     */
-    omit?: general_subjectOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: general_subjectInclude<ExtArgs> | null
-    where?: general_subjectWhereInput
   }
 
   /**
@@ -10237,8 +10351,6 @@ export namespace Prisma {
     title?: boolean
     code?: boolean
     units?: boolean
-    subject?: boolean | general_subject$subjectArgs<ExtArgs>
-    _count?: boolean | General_subjectCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["general_subject"]>
 
   export type general_subjectSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -10266,18 +10378,10 @@ export namespace Prisma {
   }
 
   export type general_subjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "created_at" | "title" | "code" | "units", ExtArgs["result"]["general_subject"]>
-  export type general_subjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    subject?: boolean | general_subject$subjectArgs<ExtArgs>
-    _count?: boolean | General_subjectCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type general_subjectIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type general_subjectIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $general_subjectPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "general_subject"
-    objects: {
-      subject: Prisma.$subjectPayload<ExtArgs>[]
-    }
+    objects: {}
     scalars: $Extensions.GetPayloadResult<{
       id: bigint
       created_at: Date
@@ -10678,7 +10782,6 @@ export namespace Prisma {
    */
   export interface Prisma__general_subjectClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    subject<T extends general_subject$subjectArgs<ExtArgs> = {}>(args?: Subset<T, general_subject$subjectArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$subjectPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -10730,10 +10833,6 @@ export namespace Prisma {
      */
     omit?: general_subjectOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: general_subjectInclude<ExtArgs> | null
-    /**
      * Filter, which general_subject to fetch.
      */
     where: general_subjectWhereUniqueInput
@@ -10752,10 +10851,6 @@ export namespace Prisma {
      */
     omit?: general_subjectOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: general_subjectInclude<ExtArgs> | null
-    /**
      * Filter, which general_subject to fetch.
      */
     where: general_subjectWhereUniqueInput
@@ -10773,10 +10868,6 @@ export namespace Prisma {
      * Omit specific fields from the general_subject
      */
     omit?: general_subjectOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: general_subjectInclude<ExtArgs> | null
     /**
      * Filter, which general_subject to fetch.
      */
@@ -10826,10 +10917,6 @@ export namespace Prisma {
      */
     omit?: general_subjectOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: general_subjectInclude<ExtArgs> | null
-    /**
      * Filter, which general_subject to fetch.
      */
     where?: general_subjectWhereInput
@@ -10877,10 +10964,6 @@ export namespace Prisma {
      * Omit specific fields from the general_subject
      */
     omit?: general_subjectOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: general_subjectInclude<ExtArgs> | null
     /**
      * Filter, which general_subjects to fetch.
      */
@@ -10930,10 +11013,6 @@ export namespace Prisma {
      */
     omit?: general_subjectOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: general_subjectInclude<ExtArgs> | null
-    /**
      * The data needed to create a general_subject.
      */
     data: XOR<general_subjectCreateInput, general_subjectUncheckedCreateInput>
@@ -10981,10 +11060,6 @@ export namespace Prisma {
      * Omit specific fields from the general_subject
      */
     omit?: general_subjectOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: general_subjectInclude<ExtArgs> | null
     /**
      * The data needed to update a general_subject.
      */
@@ -11052,10 +11127,6 @@ export namespace Prisma {
      */
     omit?: general_subjectOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: general_subjectInclude<ExtArgs> | null
-    /**
      * The filter to search for the general_subject to update in case it exists.
      */
     where: general_subjectWhereUniqueInput
@@ -11082,10 +11153,6 @@ export namespace Prisma {
      */
     omit?: general_subjectOmit<ExtArgs> | null
     /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: general_subjectInclude<ExtArgs> | null
-    /**
      * Filter which general_subject to delete.
      */
     where: general_subjectWhereUniqueInput
@@ -11106,30 +11173,6 @@ export namespace Prisma {
   }
 
   /**
-   * general_subject.subject
-   */
-  export type general_subject$subjectArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the subject
-     */
-    select?: subjectSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the subject
-     */
-    omit?: subjectOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: subjectInclude<ExtArgs> | null
-    where?: subjectWhereInput
-    orderBy?: subjectOrderByWithRelationInput | subjectOrderByWithRelationInput[]
-    cursor?: subjectWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: SubjectScalarFieldEnum | SubjectScalarFieldEnum[]
-  }
-
-  /**
    * general_subject without action
    */
   export type general_subjectDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11141,10 +11184,1089 @@ export namespace Prisma {
      * Omit specific fields from the general_subject
      */
     omit?: general_subjectOmit<ExtArgs> | null
+  }
+
+
+  /**
+   * Model degree_level
+   */
+
+  export type AggregateDegree_level = {
+    _count: Degree_levelCountAggregateOutputType | null
+    _avg: Degree_levelAvgAggregateOutputType | null
+    _sum: Degree_levelSumAggregateOutputType | null
+    _min: Degree_levelMinAggregateOutputType | null
+    _max: Degree_levelMaxAggregateOutputType | null
+  }
+
+  export type Degree_levelAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type Degree_levelSumAggregateOutputType = {
+    id: bigint | null
+  }
+
+  export type Degree_levelMinAggregateOutputType = {
+    id: bigint | null
+    created_at: Date | null
+    title: string | null
+  }
+
+  export type Degree_levelMaxAggregateOutputType = {
+    id: bigint | null
+    created_at: Date | null
+    title: string | null
+  }
+
+  export type Degree_levelCountAggregateOutputType = {
+    id: number
+    created_at: number
+    title: number
+    _all: number
+  }
+
+
+  export type Degree_levelAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type Degree_levelSumAggregateInputType = {
+    id?: true
+  }
+
+  export type Degree_levelMinAggregateInputType = {
+    id?: true
+    created_at?: true
+    title?: true
+  }
+
+  export type Degree_levelMaxAggregateInputType = {
+    id?: true
+    created_at?: true
+    title?: true
+  }
+
+  export type Degree_levelCountAggregateInputType = {
+    id?: true
+    created_at?: true
+    title?: true
+    _all?: true
+  }
+
+  export type Degree_levelAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which degree_level to aggregate.
+     */
+    where?: degree_levelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of degree_levels to fetch.
+     */
+    orderBy?: degree_levelOrderByWithRelationInput | degree_levelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: degree_levelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` degree_levels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` degree_levels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned degree_levels
+    **/
+    _count?: true | Degree_levelCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Degree_levelAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Degree_levelSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Degree_levelMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Degree_levelMaxAggregateInputType
+  }
+
+  export type GetDegree_levelAggregateType<T extends Degree_levelAggregateArgs> = {
+        [P in keyof T & keyof AggregateDegree_level]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateDegree_level[P]>
+      : GetScalarType<T[P], AggregateDegree_level[P]>
+  }
+
+
+
+
+  export type degree_levelGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: degree_levelWhereInput
+    orderBy?: degree_levelOrderByWithAggregationInput | degree_levelOrderByWithAggregationInput[]
+    by: Degree_levelScalarFieldEnum[] | Degree_levelScalarFieldEnum
+    having?: degree_levelScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Degree_levelCountAggregateInputType | true
+    _avg?: Degree_levelAvgAggregateInputType
+    _sum?: Degree_levelSumAggregateInputType
+    _min?: Degree_levelMinAggregateInputType
+    _max?: Degree_levelMaxAggregateInputType
+  }
+
+  export type Degree_levelGroupByOutputType = {
+    id: bigint
+    created_at: Date
+    title: string
+    _count: Degree_levelCountAggregateOutputType | null
+    _avg: Degree_levelAvgAggregateOutputType | null
+    _sum: Degree_levelSumAggregateOutputType | null
+    _min: Degree_levelMinAggregateOutputType | null
+    _max: Degree_levelMaxAggregateOutputType | null
+  }
+
+  type GetDegree_levelGroupByPayload<T extends degree_levelGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Degree_levelGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Degree_levelGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Degree_levelGroupByOutputType[P]>
+            : GetScalarType<T[P], Degree_levelGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type degree_levelSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    created_at?: boolean
+    title?: boolean
+    course?: boolean | degree_level$courseArgs<ExtArgs>
+    _count?: boolean | Degree_levelCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["degree_level"]>
+
+  export type degree_levelSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    created_at?: boolean
+    title?: boolean
+  }, ExtArgs["result"]["degree_level"]>
+
+  export type degree_levelSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    created_at?: boolean
+    title?: boolean
+  }, ExtArgs["result"]["degree_level"]>
+
+  export type degree_levelSelectScalar = {
+    id?: boolean
+    created_at?: boolean
+    title?: boolean
+  }
+
+  export type degree_levelOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "created_at" | "title", ExtArgs["result"]["degree_level"]>
+  export type degree_levelInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    course?: boolean | degree_level$courseArgs<ExtArgs>
+    _count?: boolean | Degree_levelCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type degree_levelIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type degree_levelIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $degree_levelPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "degree_level"
+    objects: {
+      course: Prisma.$coursePayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: bigint
+      created_at: Date
+      title: string
+    }, ExtArgs["result"]["degree_level"]>
+    composites: {}
+  }
+
+  type degree_levelGetPayload<S extends boolean | null | undefined | degree_levelDefaultArgs> = $Result.GetResult<Prisma.$degree_levelPayload, S>
+
+  type degree_levelCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<degree_levelFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Degree_levelCountAggregateInputType | true
+    }
+
+  export interface degree_levelDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['degree_level'], meta: { name: 'degree_level' } }
+    /**
+     * Find zero or one Degree_level that matches the filter.
+     * @param {degree_levelFindUniqueArgs} args - Arguments to find a Degree_level
+     * @example
+     * // Get one Degree_level
+     * const degree_level = await prisma.degree_level.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends degree_levelFindUniqueArgs>(args: SelectSubset<T, degree_levelFindUniqueArgs<ExtArgs>>): Prisma__degree_levelClient<$Result.GetResult<Prisma.$degree_levelPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Degree_level that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {degree_levelFindUniqueOrThrowArgs} args - Arguments to find a Degree_level
+     * @example
+     * // Get one Degree_level
+     * const degree_level = await prisma.degree_level.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends degree_levelFindUniqueOrThrowArgs>(args: SelectSubset<T, degree_levelFindUniqueOrThrowArgs<ExtArgs>>): Prisma__degree_levelClient<$Result.GetResult<Prisma.$degree_levelPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Degree_level that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {degree_levelFindFirstArgs} args - Arguments to find a Degree_level
+     * @example
+     * // Get one Degree_level
+     * const degree_level = await prisma.degree_level.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends degree_levelFindFirstArgs>(args?: SelectSubset<T, degree_levelFindFirstArgs<ExtArgs>>): Prisma__degree_levelClient<$Result.GetResult<Prisma.$degree_levelPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Degree_level that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {degree_levelFindFirstOrThrowArgs} args - Arguments to find a Degree_level
+     * @example
+     * // Get one Degree_level
+     * const degree_level = await prisma.degree_level.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends degree_levelFindFirstOrThrowArgs>(args?: SelectSubset<T, degree_levelFindFirstOrThrowArgs<ExtArgs>>): Prisma__degree_levelClient<$Result.GetResult<Prisma.$degree_levelPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Degree_levels that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {degree_levelFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Degree_levels
+     * const degree_levels = await prisma.degree_level.findMany()
+     * 
+     * // Get first 10 Degree_levels
+     * const degree_levels = await prisma.degree_level.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const degree_levelWithIdOnly = await prisma.degree_level.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends degree_levelFindManyArgs>(args?: SelectSubset<T, degree_levelFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$degree_levelPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Degree_level.
+     * @param {degree_levelCreateArgs} args - Arguments to create a Degree_level.
+     * @example
+     * // Create one Degree_level
+     * const Degree_level = await prisma.degree_level.create({
+     *   data: {
+     *     // ... data to create a Degree_level
+     *   }
+     * })
+     * 
+     */
+    create<T extends degree_levelCreateArgs>(args: SelectSubset<T, degree_levelCreateArgs<ExtArgs>>): Prisma__degree_levelClient<$Result.GetResult<Prisma.$degree_levelPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Degree_levels.
+     * @param {degree_levelCreateManyArgs} args - Arguments to create many Degree_levels.
+     * @example
+     * // Create many Degree_levels
+     * const degree_level = await prisma.degree_level.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends degree_levelCreateManyArgs>(args?: SelectSubset<T, degree_levelCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Degree_levels and returns the data saved in the database.
+     * @param {degree_levelCreateManyAndReturnArgs} args - Arguments to create many Degree_levels.
+     * @example
+     * // Create many Degree_levels
+     * const degree_level = await prisma.degree_level.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Degree_levels and only return the `id`
+     * const degree_levelWithIdOnly = await prisma.degree_level.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends degree_levelCreateManyAndReturnArgs>(args?: SelectSubset<T, degree_levelCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$degree_levelPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Degree_level.
+     * @param {degree_levelDeleteArgs} args - Arguments to delete one Degree_level.
+     * @example
+     * // Delete one Degree_level
+     * const Degree_level = await prisma.degree_level.delete({
+     *   where: {
+     *     // ... filter to delete one Degree_level
+     *   }
+     * })
+     * 
+     */
+    delete<T extends degree_levelDeleteArgs>(args: SelectSubset<T, degree_levelDeleteArgs<ExtArgs>>): Prisma__degree_levelClient<$Result.GetResult<Prisma.$degree_levelPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Degree_level.
+     * @param {degree_levelUpdateArgs} args - Arguments to update one Degree_level.
+     * @example
+     * // Update one Degree_level
+     * const degree_level = await prisma.degree_level.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends degree_levelUpdateArgs>(args: SelectSubset<T, degree_levelUpdateArgs<ExtArgs>>): Prisma__degree_levelClient<$Result.GetResult<Prisma.$degree_levelPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Degree_levels.
+     * @param {degree_levelDeleteManyArgs} args - Arguments to filter Degree_levels to delete.
+     * @example
+     * // Delete a few Degree_levels
+     * const { count } = await prisma.degree_level.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends degree_levelDeleteManyArgs>(args?: SelectSubset<T, degree_levelDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Degree_levels.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {degree_levelUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Degree_levels
+     * const degree_level = await prisma.degree_level.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends degree_levelUpdateManyArgs>(args: SelectSubset<T, degree_levelUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Degree_levels and returns the data updated in the database.
+     * @param {degree_levelUpdateManyAndReturnArgs} args - Arguments to update many Degree_levels.
+     * @example
+     * // Update many Degree_levels
+     * const degree_level = await prisma.degree_level.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Degree_levels and only return the `id`
+     * const degree_levelWithIdOnly = await prisma.degree_level.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends degree_levelUpdateManyAndReturnArgs>(args: SelectSubset<T, degree_levelUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$degree_levelPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Degree_level.
+     * @param {degree_levelUpsertArgs} args - Arguments to update or create a Degree_level.
+     * @example
+     * // Update or create a Degree_level
+     * const degree_level = await prisma.degree_level.upsert({
+     *   create: {
+     *     // ... data to create a Degree_level
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Degree_level we want to update
+     *   }
+     * })
+     */
+    upsert<T extends degree_levelUpsertArgs>(args: SelectSubset<T, degree_levelUpsertArgs<ExtArgs>>): Prisma__degree_levelClient<$Result.GetResult<Prisma.$degree_levelPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Degree_levels.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {degree_levelCountArgs} args - Arguments to filter Degree_levels to count.
+     * @example
+     * // Count the number of Degree_levels
+     * const count = await prisma.degree_level.count({
+     *   where: {
+     *     // ... the filter for the Degree_levels we want to count
+     *   }
+     * })
+    **/
+    count<T extends degree_levelCountArgs>(
+      args?: Subset<T, degree_levelCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Degree_levelCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Degree_level.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Degree_levelAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Degree_levelAggregateArgs>(args: Subset<T, Degree_levelAggregateArgs>): Prisma.PrismaPromise<GetDegree_levelAggregateType<T>>
+
+    /**
+     * Group by Degree_level.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {degree_levelGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends degree_levelGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: degree_levelGroupByArgs['orderBy'] }
+        : { orderBy?: degree_levelGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, degree_levelGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetDegree_levelGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the degree_level model
+   */
+  readonly fields: degree_levelFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for degree_level.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__degree_levelClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    course<T extends degree_level$courseArgs<ExtArgs> = {}>(args?: Subset<T, degree_level$courseArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$coursePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the degree_level model
+   */
+  interface degree_levelFieldRefs {
+    readonly id: FieldRef<"degree_level", 'BigInt'>
+    readonly created_at: FieldRef<"degree_level", 'DateTime'>
+    readonly title: FieldRef<"degree_level", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * degree_level findUnique
+   */
+  export type degree_levelFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the degree_level
+     */
+    select?: degree_levelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the degree_level
+     */
+    omit?: degree_levelOmit<ExtArgs> | null
     /**
      * Choose, which related nodes to fetch as well
      */
-    include?: general_subjectInclude<ExtArgs> | null
+    include?: degree_levelInclude<ExtArgs> | null
+    /**
+     * Filter, which degree_level to fetch.
+     */
+    where: degree_levelWhereUniqueInput
+  }
+
+  /**
+   * degree_level findUniqueOrThrow
+   */
+  export type degree_levelFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the degree_level
+     */
+    select?: degree_levelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the degree_level
+     */
+    omit?: degree_levelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: degree_levelInclude<ExtArgs> | null
+    /**
+     * Filter, which degree_level to fetch.
+     */
+    where: degree_levelWhereUniqueInput
+  }
+
+  /**
+   * degree_level findFirst
+   */
+  export type degree_levelFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the degree_level
+     */
+    select?: degree_levelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the degree_level
+     */
+    omit?: degree_levelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: degree_levelInclude<ExtArgs> | null
+    /**
+     * Filter, which degree_level to fetch.
+     */
+    where?: degree_levelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of degree_levels to fetch.
+     */
+    orderBy?: degree_levelOrderByWithRelationInput | degree_levelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for degree_levels.
+     */
+    cursor?: degree_levelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` degree_levels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` degree_levels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of degree_levels.
+     */
+    distinct?: Degree_levelScalarFieldEnum | Degree_levelScalarFieldEnum[]
+  }
+
+  /**
+   * degree_level findFirstOrThrow
+   */
+  export type degree_levelFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the degree_level
+     */
+    select?: degree_levelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the degree_level
+     */
+    omit?: degree_levelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: degree_levelInclude<ExtArgs> | null
+    /**
+     * Filter, which degree_level to fetch.
+     */
+    where?: degree_levelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of degree_levels to fetch.
+     */
+    orderBy?: degree_levelOrderByWithRelationInput | degree_levelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for degree_levels.
+     */
+    cursor?: degree_levelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` degree_levels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` degree_levels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of degree_levels.
+     */
+    distinct?: Degree_levelScalarFieldEnum | Degree_levelScalarFieldEnum[]
+  }
+
+  /**
+   * degree_level findMany
+   */
+  export type degree_levelFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the degree_level
+     */
+    select?: degree_levelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the degree_level
+     */
+    omit?: degree_levelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: degree_levelInclude<ExtArgs> | null
+    /**
+     * Filter, which degree_levels to fetch.
+     */
+    where?: degree_levelWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of degree_levels to fetch.
+     */
+    orderBy?: degree_levelOrderByWithRelationInput | degree_levelOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing degree_levels.
+     */
+    cursor?: degree_levelWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` degree_levels from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` degree_levels.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of degree_levels.
+     */
+    distinct?: Degree_levelScalarFieldEnum | Degree_levelScalarFieldEnum[]
+  }
+
+  /**
+   * degree_level create
+   */
+  export type degree_levelCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the degree_level
+     */
+    select?: degree_levelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the degree_level
+     */
+    omit?: degree_levelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: degree_levelInclude<ExtArgs> | null
+    /**
+     * The data needed to create a degree_level.
+     */
+    data: XOR<degree_levelCreateInput, degree_levelUncheckedCreateInput>
+  }
+
+  /**
+   * degree_level createMany
+   */
+  export type degree_levelCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many degree_levels.
+     */
+    data: degree_levelCreateManyInput | degree_levelCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * degree_level createManyAndReturn
+   */
+  export type degree_levelCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the degree_level
+     */
+    select?: degree_levelSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the degree_level
+     */
+    omit?: degree_levelOmit<ExtArgs> | null
+    /**
+     * The data used to create many degree_levels.
+     */
+    data: degree_levelCreateManyInput | degree_levelCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * degree_level update
+   */
+  export type degree_levelUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the degree_level
+     */
+    select?: degree_levelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the degree_level
+     */
+    omit?: degree_levelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: degree_levelInclude<ExtArgs> | null
+    /**
+     * The data needed to update a degree_level.
+     */
+    data: XOR<degree_levelUpdateInput, degree_levelUncheckedUpdateInput>
+    /**
+     * Choose, which degree_level to update.
+     */
+    where: degree_levelWhereUniqueInput
+  }
+
+  /**
+   * degree_level updateMany
+   */
+  export type degree_levelUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update degree_levels.
+     */
+    data: XOR<degree_levelUpdateManyMutationInput, degree_levelUncheckedUpdateManyInput>
+    /**
+     * Filter which degree_levels to update
+     */
+    where?: degree_levelWhereInput
+    /**
+     * Limit how many degree_levels to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * degree_level updateManyAndReturn
+   */
+  export type degree_levelUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the degree_level
+     */
+    select?: degree_levelSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the degree_level
+     */
+    omit?: degree_levelOmit<ExtArgs> | null
+    /**
+     * The data used to update degree_levels.
+     */
+    data: XOR<degree_levelUpdateManyMutationInput, degree_levelUncheckedUpdateManyInput>
+    /**
+     * Filter which degree_levels to update
+     */
+    where?: degree_levelWhereInput
+    /**
+     * Limit how many degree_levels to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * degree_level upsert
+   */
+  export type degree_levelUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the degree_level
+     */
+    select?: degree_levelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the degree_level
+     */
+    omit?: degree_levelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: degree_levelInclude<ExtArgs> | null
+    /**
+     * The filter to search for the degree_level to update in case it exists.
+     */
+    where: degree_levelWhereUniqueInput
+    /**
+     * In case the degree_level found by the `where` argument doesn't exist, create a new degree_level with this data.
+     */
+    create: XOR<degree_levelCreateInput, degree_levelUncheckedCreateInput>
+    /**
+     * In case the degree_level was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<degree_levelUpdateInput, degree_levelUncheckedUpdateInput>
+  }
+
+  /**
+   * degree_level delete
+   */
+  export type degree_levelDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the degree_level
+     */
+    select?: degree_levelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the degree_level
+     */
+    omit?: degree_levelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: degree_levelInclude<ExtArgs> | null
+    /**
+     * Filter which degree_level to delete.
+     */
+    where: degree_levelWhereUniqueInput
+  }
+
+  /**
+   * degree_level deleteMany
+   */
+  export type degree_levelDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which degree_levels to delete
+     */
+    where?: degree_levelWhereInput
+    /**
+     * Limit how many degree_levels to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * degree_level.course
+   */
+  export type degree_level$courseArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the course
+     */
+    select?: courseSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the course
+     */
+    omit?: courseOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: courseInclude<ExtArgs> | null
+    where?: courseWhereInput
+    orderBy?: courseOrderByWithRelationInput | courseOrderByWithRelationInput[]
+    cursor?: courseWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CourseScalarFieldEnum | CourseScalarFieldEnum[]
+  }
+
+  /**
+   * degree_level without action
+   */
+  export type degree_levelDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the degree_level
+     */
+    select?: degree_levelSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the degree_level
+     */
+    omit?: degree_levelOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: degree_levelInclude<ExtArgs> | null
   }
 
 
@@ -11168,7 +12290,8 @@ export namespace Prisma {
     updated_at: 'updated_at',
     code: 'code',
     name: 'name',
-    description: 'description'
+    description: 'description',
+    degree_level_id: 'degree_level_id'
   };
 
   export type CourseScalarFieldEnum = (typeof CourseScalarFieldEnum)[keyof typeof CourseScalarFieldEnum]
@@ -11200,7 +12323,8 @@ export namespace Prisma {
     last_name: 'last_name',
     email: 'email',
     birth_date: 'birth_date',
-    course_id: 'course_id'
+    course_id: 'course_id',
+    student_no: 'student_no'
   };
 
   export type StudentScalarFieldEnum = (typeof StudentScalarFieldEnum)[keyof typeof StudentScalarFieldEnum]
@@ -11213,8 +12337,7 @@ export namespace Prisma {
     title: 'title',
     units: 'units',
     updated_at: 'updated_at',
-    course_id: 'course_id',
-    general_subject_id: 'general_subject_id'
+    course_id: 'course_id'
   };
 
   export type SubjectScalarFieldEnum = (typeof SubjectScalarFieldEnum)[keyof typeof SubjectScalarFieldEnum]
@@ -11261,6 +12384,15 @@ export namespace Prisma {
   };
 
   export type General_subjectScalarFieldEnum = (typeof General_subjectScalarFieldEnum)[keyof typeof General_subjectScalarFieldEnum]
+
+
+  export const Degree_levelScalarFieldEnum: {
+    id: 'id',
+    created_at: 'created_at',
+    title: 'title'
+  };
+
+  export type Degree_levelScalarFieldEnum = (typeof Degree_levelScalarFieldEnum)[keyof typeof Degree_levelScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -11403,6 +12535,8 @@ export namespace Prisma {
     code?: StringFilter<"course"> | string
     name?: StringFilter<"course"> | string
     description?: StringNullableFilter<"course"> | string | null
+    degree_level_id?: BigIntNullableFilter<"course"> | bigint | number | null
+    degree_level?: XOR<Degree_levelNullableScalarRelationFilter, degree_levelWhereInput> | null
     grade?: GradeListRelationFilter
     student?: StudentListRelationFilter
     subject?: SubjectListRelationFilter
@@ -11415,6 +12549,8 @@ export namespace Prisma {
     code?: SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
+    degree_level_id?: SortOrderInput | SortOrder
+    degree_level?: degree_levelOrderByWithRelationInput
     grade?: gradeOrderByRelationAggregateInput
     student?: studentOrderByRelationAggregateInput
     subject?: subjectOrderByRelationAggregateInput
@@ -11430,6 +12566,8 @@ export namespace Prisma {
     code?: StringFilter<"course"> | string
     name?: StringFilter<"course"> | string
     description?: StringNullableFilter<"course"> | string | null
+    degree_level_id?: BigIntNullableFilter<"course"> | bigint | number | null
+    degree_level?: XOR<Degree_levelNullableScalarRelationFilter, degree_levelWhereInput> | null
     grade?: GradeListRelationFilter
     student?: StudentListRelationFilter
     subject?: SubjectListRelationFilter
@@ -11442,6 +12580,7 @@ export namespace Prisma {
     code?: SortOrder
     name?: SortOrder
     description?: SortOrderInput | SortOrder
+    degree_level_id?: SortOrderInput | SortOrder
     _count?: courseCountOrderByAggregateInput
     _avg?: courseAvgOrderByAggregateInput
     _max?: courseMaxOrderByAggregateInput
@@ -11459,6 +12598,7 @@ export namespace Prisma {
     code?: StringWithAggregatesFilter<"course"> | string
     name?: StringWithAggregatesFilter<"course"> | string
     description?: StringNullableWithAggregatesFilter<"course"> | string | null
+    degree_level_id?: BigIntNullableWithAggregatesFilter<"course"> | bigint | number | null
   }
 
   export type gradeWhereInput = {
@@ -11574,6 +12714,7 @@ export namespace Prisma {
     email?: StringNullableFilter<"student"> | string | null
     birth_date?: DateTimeFilter<"student"> | Date | string
     course_id?: BigIntFilter<"student"> | bigint | number
+    student_no?: StringFilter<"student"> | string
     grade?: GradeListRelationFilter
     course?: XOR<CourseScalarRelationFilter, courseWhereInput>
     subject_reservation?: Subject_reservationListRelationFilter
@@ -11588,6 +12729,7 @@ export namespace Prisma {
     email?: SortOrderInput | SortOrder
     birth_date?: SortOrder
     course_id?: SortOrder
+    student_no?: SortOrder
     grade?: gradeOrderByRelationAggregateInput
     course?: courseOrderByWithRelationInput
     subject_reservation?: subject_reservationOrderByRelationAggregateInput
@@ -11596,6 +12738,7 @@ export namespace Prisma {
   export type studentWhereUniqueInput = Prisma.AtLeast<{
     id?: bigint | number
     email?: string
+    student_no?: string
     AND?: studentWhereInput | studentWhereInput[]
     OR?: studentWhereInput[]
     NOT?: studentWhereInput | studentWhereInput[]
@@ -11608,7 +12751,7 @@ export namespace Prisma {
     grade?: GradeListRelationFilter
     course?: XOR<CourseScalarRelationFilter, courseWhereInput>
     subject_reservation?: Subject_reservationListRelationFilter
-  }, "id" | "email">
+  }, "id" | "email" | "student_no">
 
   export type studentOrderByWithAggregationInput = {
     id?: SortOrder
@@ -11619,6 +12762,7 @@ export namespace Prisma {
     email?: SortOrderInput | SortOrder
     birth_date?: SortOrder
     course_id?: SortOrder
+    student_no?: SortOrder
     _count?: studentCountOrderByAggregateInput
     _avg?: studentAvgOrderByAggregateInput
     _max?: studentMaxOrderByAggregateInput
@@ -11638,6 +12782,7 @@ export namespace Prisma {
     email?: StringNullableWithAggregatesFilter<"student"> | string | null
     birth_date?: DateTimeWithAggregatesFilter<"student"> | Date | string
     course_id?: BigIntWithAggregatesFilter<"student"> | bigint | number
+    student_no?: StringWithAggregatesFilter<"student"> | string
   }
 
   export type subjectWhereInput = {
@@ -11651,10 +12796,8 @@ export namespace Prisma {
     units?: IntFilter<"subject"> | number
     updated_at?: DateTimeNullableFilter<"subject"> | Date | string | null
     course_id?: BigIntFilter<"subject"> | bigint | number
-    general_subject_id?: BigIntNullableFilter<"subject"> | bigint | number | null
     grade?: GradeListRelationFilter
     course?: XOR<CourseScalarRelationFilter, courseWhereInput>
-    general_subject?: XOR<General_subjectNullableScalarRelationFilter, general_subjectWhereInput> | null
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: Subject_prerequisiteListRelationFilter
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: Subject_prerequisiteListRelationFilter
     subject_reservation?: Subject_reservationListRelationFilter
@@ -11668,10 +12811,8 @@ export namespace Prisma {
     units?: SortOrder
     updated_at?: SortOrderInput | SortOrder
     course_id?: SortOrder
-    general_subject_id?: SortOrderInput | SortOrder
     grade?: gradeOrderByRelationAggregateInput
     course?: courseOrderByWithRelationInput
-    general_subject?: general_subjectOrderByWithRelationInput
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteOrderByRelationAggregateInput
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteOrderByRelationAggregateInput
     subject_reservation?: subject_reservationOrderByRelationAggregateInput
@@ -11688,10 +12829,8 @@ export namespace Prisma {
     units?: IntFilter<"subject"> | number
     updated_at?: DateTimeNullableFilter<"subject"> | Date | string | null
     course_id?: BigIntFilter<"subject"> | bigint | number
-    general_subject_id?: BigIntNullableFilter<"subject"> | bigint | number | null
     grade?: GradeListRelationFilter
     course?: XOR<CourseScalarRelationFilter, courseWhereInput>
-    general_subject?: XOR<General_subjectNullableScalarRelationFilter, general_subjectWhereInput> | null
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: Subject_prerequisiteListRelationFilter
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: Subject_prerequisiteListRelationFilter
     subject_reservation?: Subject_reservationListRelationFilter
@@ -11705,7 +12844,6 @@ export namespace Prisma {
     units?: SortOrder
     updated_at?: SortOrderInput | SortOrder
     course_id?: SortOrder
-    general_subject_id?: SortOrderInput | SortOrder
     _count?: subjectCountOrderByAggregateInput
     _avg?: subjectAvgOrderByAggregateInput
     _max?: subjectMaxOrderByAggregateInput
@@ -11724,7 +12862,6 @@ export namespace Prisma {
     units?: IntWithAggregatesFilter<"subject"> | number
     updated_at?: DateTimeNullableWithAggregatesFilter<"subject"> | Date | string | null
     course_id?: BigIntWithAggregatesFilter<"subject"> | bigint | number
-    general_subject_id?: BigIntNullableWithAggregatesFilter<"subject"> | bigint | number | null
   }
 
   export type subject_prerequisiteWhereInput = {
@@ -11908,7 +13045,6 @@ export namespace Prisma {
     title?: StringFilter<"general_subject"> | string
     code?: StringFilter<"general_subject"> | string
     units?: IntFilter<"general_subject"> | number
-    subject?: SubjectListRelationFilter
   }
 
   export type general_subjectOrderByWithRelationInput = {
@@ -11917,7 +13053,6 @@ export namespace Prisma {
     title?: SortOrder
     code?: SortOrder
     units?: SortOrder
-    subject?: subjectOrderByRelationAggregateInput
   }
 
   export type general_subjectWhereUniqueInput = Prisma.AtLeast<{
@@ -11929,7 +13064,6 @@ export namespace Prisma {
     title?: StringFilter<"general_subject"> | string
     code?: StringFilter<"general_subject"> | string
     units?: IntFilter<"general_subject"> | number
-    subject?: SubjectListRelationFilter
   }, "id">
 
   export type general_subjectOrderByWithAggregationInput = {
@@ -11956,6 +13090,53 @@ export namespace Prisma {
     units?: IntWithAggregatesFilter<"general_subject"> | number
   }
 
+  export type degree_levelWhereInput = {
+    AND?: degree_levelWhereInput | degree_levelWhereInput[]
+    OR?: degree_levelWhereInput[]
+    NOT?: degree_levelWhereInput | degree_levelWhereInput[]
+    id?: BigIntFilter<"degree_level"> | bigint | number
+    created_at?: DateTimeFilter<"degree_level"> | Date | string
+    title?: StringFilter<"degree_level"> | string
+    course?: CourseListRelationFilter
+  }
+
+  export type degree_levelOrderByWithRelationInput = {
+    id?: SortOrder
+    created_at?: SortOrder
+    title?: SortOrder
+    course?: courseOrderByRelationAggregateInput
+  }
+
+  export type degree_levelWhereUniqueInput = Prisma.AtLeast<{
+    id?: bigint | number
+    title?: string
+    AND?: degree_levelWhereInput | degree_levelWhereInput[]
+    OR?: degree_levelWhereInput[]
+    NOT?: degree_levelWhereInput | degree_levelWhereInput[]
+    created_at?: DateTimeFilter<"degree_level"> | Date | string
+    course?: CourseListRelationFilter
+  }, "id" | "title">
+
+  export type degree_levelOrderByWithAggregationInput = {
+    id?: SortOrder
+    created_at?: SortOrder
+    title?: SortOrder
+    _count?: degree_levelCountOrderByAggregateInput
+    _avg?: degree_levelAvgOrderByAggregateInput
+    _max?: degree_levelMaxOrderByAggregateInput
+    _min?: degree_levelMinOrderByAggregateInput
+    _sum?: degree_levelSumOrderByAggregateInput
+  }
+
+  export type degree_levelScalarWhereWithAggregatesInput = {
+    AND?: degree_levelScalarWhereWithAggregatesInput | degree_levelScalarWhereWithAggregatesInput[]
+    OR?: degree_levelScalarWhereWithAggregatesInput[]
+    NOT?: degree_levelScalarWhereWithAggregatesInput | degree_levelScalarWhereWithAggregatesInput[]
+    id?: BigIntWithAggregatesFilter<"degree_level"> | bigint | number
+    created_at?: DateTimeWithAggregatesFilter<"degree_level"> | Date | string
+    title?: StringWithAggregatesFilter<"degree_level"> | string
+  }
+
   export type courseCreateInput = {
     id?: bigint | number
     created_at?: Date | string
@@ -11963,6 +13144,7 @@ export namespace Prisma {
     code: string
     name: string
     description?: string | null
+    degree_level?: degree_levelCreateNestedOneWithoutCourseInput
     grade?: gradeCreateNestedManyWithoutCourseInput
     student?: studentCreateNestedManyWithoutCourseInput
     subject?: subjectCreateNestedManyWithoutCourseInput
@@ -11975,6 +13157,7 @@ export namespace Prisma {
     code: string
     name: string
     description?: string | null
+    degree_level_id?: bigint | number | null
     grade?: gradeUncheckedCreateNestedManyWithoutCourseInput
     student?: studentUncheckedCreateNestedManyWithoutCourseInput
     subject?: subjectUncheckedCreateNestedManyWithoutCourseInput
@@ -11987,6 +13170,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    degree_level?: degree_levelUpdateOneWithoutCourseNestedInput
     grade?: gradeUpdateManyWithoutCourseNestedInput
     student?: studentUpdateManyWithoutCourseNestedInput
     subject?: subjectUpdateManyWithoutCourseNestedInput
@@ -11999,6 +13183,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    degree_level_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     grade?: gradeUncheckedUpdateManyWithoutCourseNestedInput
     student?: studentUncheckedUpdateManyWithoutCourseNestedInput
     subject?: subjectUncheckedUpdateManyWithoutCourseNestedInput
@@ -12011,6 +13196,7 @@ export namespace Prisma {
     code: string
     name: string
     description?: string | null
+    degree_level_id?: bigint | number | null
   }
 
   export type courseUpdateManyMutationInput = {
@@ -12029,6 +13215,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    degree_level_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   }
 
   export type gradeCreateInput = {
@@ -12140,6 +13327,7 @@ export namespace Prisma {
     last_name: string
     email?: string | null
     birth_date: Date | string
+    student_no: string
     grade?: gradeCreateNestedManyWithoutStudentInput
     course: courseCreateNestedOneWithoutStudentInput
     subject_reservation?: subject_reservationCreateNestedManyWithoutStudentInput
@@ -12154,6 +13342,7 @@ export namespace Prisma {
     email?: string | null
     birth_date: Date | string
     course_id: bigint | number
+    student_no: string
     grade?: gradeUncheckedCreateNestedManyWithoutStudentInput
     subject_reservation?: subject_reservationUncheckedCreateNestedManyWithoutStudentInput
   }
@@ -12166,6 +13355,7 @@ export namespace Prisma {
     last_name?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    student_no?: StringFieldUpdateOperationsInput | string
     grade?: gradeUpdateManyWithoutStudentNestedInput
     course?: courseUpdateOneRequiredWithoutStudentNestedInput
     subject_reservation?: subject_reservationUpdateManyWithoutStudentNestedInput
@@ -12180,6 +13370,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
     course_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    student_no?: StringFieldUpdateOperationsInput | string
     grade?: gradeUncheckedUpdateManyWithoutStudentNestedInput
     subject_reservation?: subject_reservationUncheckedUpdateManyWithoutStudentNestedInput
   }
@@ -12193,6 +13384,7 @@ export namespace Prisma {
     email?: string | null
     birth_date: Date | string
     course_id: bigint | number
+    student_no: string
   }
 
   export type studentUpdateManyMutationInput = {
@@ -12203,6 +13395,7 @@ export namespace Prisma {
     last_name?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    student_no?: StringFieldUpdateOperationsInput | string
   }
 
   export type studentUncheckedUpdateManyInput = {
@@ -12214,6 +13407,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
     course_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    student_no?: StringFieldUpdateOperationsInput | string
   }
 
   export type subjectCreateInput = {
@@ -12225,7 +13419,6 @@ export namespace Prisma {
     updated_at?: Date | string | null
     grade?: gradeCreateNestedManyWithoutSubjectInput
     course: courseCreateNestedOneWithoutSubjectInput
-    general_subject?: general_subjectCreateNestedOneWithoutSubjectInput
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteCreateNestedManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectInput
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteCreateNestedManyWithoutSubject_subject_prerequisite_subject_idTosubjectInput
     subject_reservation?: subject_reservationCreateNestedManyWithoutSubjectInput
@@ -12239,7 +13432,6 @@ export namespace Prisma {
     units: number
     updated_at?: Date | string | null
     course_id: bigint | number
-    general_subject_id?: bigint | number | null
     grade?: gradeUncheckedCreateNestedManyWithoutSubjectInput
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteUncheckedCreateNestedManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectInput
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteUncheckedCreateNestedManyWithoutSubject_subject_prerequisite_subject_idTosubjectInput
@@ -12255,7 +13447,6 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     grade?: gradeUpdateManyWithoutSubjectNestedInput
     course?: courseUpdateOneRequiredWithoutSubjectNestedInput
-    general_subject?: general_subjectUpdateOneWithoutSubjectNestedInput
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteUpdateManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectNestedInput
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteUpdateManyWithoutSubject_subject_prerequisite_subject_idTosubjectNestedInput
     subject_reservation?: subject_reservationUpdateManyWithoutSubjectNestedInput
@@ -12269,7 +13460,6 @@ export namespace Prisma {
     units?: IntFieldUpdateOperationsInput | number
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     course_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    general_subject_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     grade?: gradeUncheckedUpdateManyWithoutSubjectNestedInput
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteUncheckedUpdateManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectNestedInput
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteUncheckedUpdateManyWithoutSubject_subject_prerequisite_subject_idTosubjectNestedInput
@@ -12284,7 +13474,6 @@ export namespace Prisma {
     units: number
     updated_at?: Date | string | null
     course_id: bigint | number
-    general_subject_id?: bigint | number | null
   }
 
   export type subjectUpdateManyMutationInput = {
@@ -12304,7 +13493,6 @@ export namespace Prisma {
     units?: IntFieldUpdateOperationsInput | number
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     course_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    general_subject_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   }
 
   export type subject_prerequisiteCreateInput = {
@@ -12412,7 +13600,7 @@ export namespace Prisma {
     id?: bigint | number
     created_at?: Date | string
     email: string
-    role: string
+    role?: string
     updated_at?: Date | string | null
     grade?: gradeCreateNestedManyWithoutUserInput
   }
@@ -12421,7 +13609,7 @@ export namespace Prisma {
     id?: bigint | number
     created_at?: Date | string
     email: string
-    role: string
+    role?: string
     updated_at?: Date | string | null
     grade?: gradeUncheckedCreateNestedManyWithoutUserInput
   }
@@ -12448,7 +13636,7 @@ export namespace Prisma {
     id?: bigint | number
     created_at?: Date | string
     email: string
-    role: string
+    role?: string
     updated_at?: Date | string | null
   }
 
@@ -12474,7 +13662,6 @@ export namespace Prisma {
     title: string
     code: string
     units: number
-    subject?: subjectCreateNestedManyWithoutGeneral_subjectInput
   }
 
   export type general_subjectUncheckedCreateInput = {
@@ -12483,7 +13670,6 @@ export namespace Prisma {
     title: string
     code: string
     units: number
-    subject?: subjectUncheckedCreateNestedManyWithoutGeneral_subjectInput
   }
 
   export type general_subjectUpdateInput = {
@@ -12492,7 +13678,6 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     units?: IntFieldUpdateOperationsInput | number
-    subject?: subjectUpdateManyWithoutGeneral_subjectNestedInput
   }
 
   export type general_subjectUncheckedUpdateInput = {
@@ -12501,7 +13686,6 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     units?: IntFieldUpdateOperationsInput | number
-    subject?: subjectUncheckedUpdateManyWithoutGeneral_subjectNestedInput
   }
 
   export type general_subjectCreateManyInput = {
@@ -12526,6 +13710,52 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     code?: StringFieldUpdateOperationsInput | string
     units?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type degree_levelCreateInput = {
+    id?: bigint | number
+    created_at?: Date | string
+    title: string
+    course?: courseCreateNestedManyWithoutDegree_levelInput
+  }
+
+  export type degree_levelUncheckedCreateInput = {
+    id?: bigint | number
+    created_at?: Date | string
+    title: string
+    course?: courseUncheckedCreateNestedManyWithoutDegree_levelInput
+  }
+
+  export type degree_levelUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    course?: courseUpdateManyWithoutDegree_levelNestedInput
+  }
+
+  export type degree_levelUncheckedUpdateInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+    course?: courseUncheckedUpdateManyWithoutDegree_levelNestedInput
+  }
+
+  export type degree_levelCreateManyInput = {
+    id?: bigint | number
+    created_at?: Date | string
+    title: string
+  }
+
+  export type degree_levelUpdateManyMutationInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type degree_levelUncheckedUpdateManyInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
   }
 
   export type BigIntFilter<$PrismaModel = never> = {
@@ -12591,6 +13821,22 @@ export namespace Prisma {
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
   }
 
+  export type BigIntNullableFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntNullableFilter<$PrismaModel> | bigint | number | null
+  }
+
+  export type Degree_levelNullableScalarRelationFilter = {
+    is?: degree_levelWhereInput | null
+    isNot?: degree_levelWhereInput | null
+  }
+
   export type GradeListRelationFilter = {
     every?: gradeWhereInput
     some?: gradeWhereInput
@@ -12633,10 +13879,12 @@ export namespace Prisma {
     code?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    degree_level_id?: SortOrder
   }
 
   export type courseAvgOrderByAggregateInput = {
     id?: SortOrder
+    degree_level_id?: SortOrder
   }
 
   export type courseMaxOrderByAggregateInput = {
@@ -12646,6 +13894,7 @@ export namespace Prisma {
     code?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    degree_level_id?: SortOrder
   }
 
   export type courseMinOrderByAggregateInput = {
@@ -12655,10 +13904,12 @@ export namespace Prisma {
     code?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    degree_level_id?: SortOrder
   }
 
   export type courseSumOrderByAggregateInput = {
     id?: SortOrder
+    degree_level_id?: SortOrder
   }
 
   export type BigIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -12741,7 +13992,7 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type BigIntNullableFilter<$PrismaModel = never> = {
+  export type BigIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
     in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
     notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
@@ -12749,7 +14000,12 @@ export namespace Prisma {
     lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
     gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntNullableFilter<$PrismaModel> | bigint | number | null
+    not?: NestedBigIntNullableWithAggregatesFilter<$PrismaModel> | bigint | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedBigIntNullableFilter<$PrismaModel>
+    _min?: NestedBigIntNullableFilter<$PrismaModel>
+    _max?: NestedBigIntNullableFilter<$PrismaModel>
   }
 
   export type DecimalNullableFilter<$PrismaModel = never> = {
@@ -12852,22 +14108,6 @@ export namespace Prisma {
     encoded_by_user_id?: SortOrder
   }
 
-  export type BigIntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntNullableWithAggregatesFilter<$PrismaModel> | bigint | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedBigIntNullableFilter<$PrismaModel>
-    _min?: NestedBigIntNullableFilter<$PrismaModel>
-    _max?: NestedBigIntNullableFilter<$PrismaModel>
-  }
-
   export type DecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
     in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
@@ -12908,6 +14148,7 @@ export namespace Prisma {
     email?: SortOrder
     birth_date?: SortOrder
     course_id?: SortOrder
+    student_no?: SortOrder
   }
 
   export type studentAvgOrderByAggregateInput = {
@@ -12924,6 +14165,7 @@ export namespace Prisma {
     email?: SortOrder
     birth_date?: SortOrder
     course_id?: SortOrder
+    student_no?: SortOrder
   }
 
   export type studentMinOrderByAggregateInput = {
@@ -12935,6 +14177,7 @@ export namespace Prisma {
     email?: SortOrder
     birth_date?: SortOrder
     course_id?: SortOrder
+    student_no?: SortOrder
   }
 
   export type studentSumOrderByAggregateInput = {
@@ -12951,11 +14194,6 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
-  }
-
-  export type General_subjectNullableScalarRelationFilter = {
-    is?: general_subjectWhereInput | null
-    isNot?: general_subjectWhereInput | null
   }
 
   export type Subject_prerequisiteListRelationFilter = {
@@ -12976,14 +14214,12 @@ export namespace Prisma {
     units?: SortOrder
     updated_at?: SortOrder
     course_id?: SortOrder
-    general_subject_id?: SortOrder
   }
 
   export type subjectAvgOrderByAggregateInput = {
     id?: SortOrder
     units?: SortOrder
     course_id?: SortOrder
-    general_subject_id?: SortOrder
   }
 
   export type subjectMaxOrderByAggregateInput = {
@@ -12994,7 +14230,6 @@ export namespace Prisma {
     units?: SortOrder
     updated_at?: SortOrder
     course_id?: SortOrder
-    general_subject_id?: SortOrder
   }
 
   export type subjectMinOrderByAggregateInput = {
@@ -13005,14 +14240,12 @@ export namespace Prisma {
     units?: SortOrder
     updated_at?: SortOrder
     course_id?: SortOrder
-    general_subject_id?: SortOrder
   }
 
   export type subjectSumOrderByAggregateInput = {
     id?: SortOrder
     units?: SortOrder
     course_id?: SortOrder
-    general_subject_id?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -13193,6 +14426,48 @@ export namespace Prisma {
     units?: SortOrder
   }
 
+  export type CourseListRelationFilter = {
+    every?: courseWhereInput
+    some?: courseWhereInput
+    none?: courseWhereInput
+  }
+
+  export type courseOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type degree_levelCountOrderByAggregateInput = {
+    id?: SortOrder
+    created_at?: SortOrder
+    title?: SortOrder
+  }
+
+  export type degree_levelAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type degree_levelMaxOrderByAggregateInput = {
+    id?: SortOrder
+    created_at?: SortOrder
+    title?: SortOrder
+  }
+
+  export type degree_levelMinOrderByAggregateInput = {
+    id?: SortOrder
+    created_at?: SortOrder
+    title?: SortOrder
+  }
+
+  export type degree_levelSumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type degree_levelCreateNestedOneWithoutCourseInput = {
+    create?: XOR<degree_levelCreateWithoutCourseInput, degree_levelUncheckedCreateWithoutCourseInput>
+    connectOrCreate?: degree_levelCreateOrConnectWithoutCourseInput
+    connect?: degree_levelWhereUniqueInput
+  }
+
   export type gradeCreateNestedManyWithoutCourseInput = {
     create?: XOR<gradeCreateWithoutCourseInput, gradeUncheckedCreateWithoutCourseInput> | gradeCreateWithoutCourseInput[] | gradeUncheckedCreateWithoutCourseInput[]
     connectOrCreate?: gradeCreateOrConnectWithoutCourseInput | gradeCreateOrConnectWithoutCourseInput[]
@@ -13259,6 +14534,16 @@ export namespace Prisma {
     set?: string | null
   }
 
+  export type degree_levelUpdateOneWithoutCourseNestedInput = {
+    create?: XOR<degree_levelCreateWithoutCourseInput, degree_levelUncheckedCreateWithoutCourseInput>
+    connectOrCreate?: degree_levelCreateOrConnectWithoutCourseInput
+    upsert?: degree_levelUpsertWithoutCourseInput
+    disconnect?: degree_levelWhereInput | boolean
+    delete?: degree_levelWhereInput | boolean
+    connect?: degree_levelWhereUniqueInput
+    update?: XOR<XOR<degree_levelUpdateToOneWithWhereWithoutCourseInput, degree_levelUpdateWithoutCourseInput>, degree_levelUncheckedUpdateWithoutCourseInput>
+  }
+
   export type gradeUpdateManyWithoutCourseNestedInput = {
     create?: XOR<gradeCreateWithoutCourseInput, gradeUncheckedCreateWithoutCourseInput> | gradeCreateWithoutCourseInput[] | gradeUncheckedCreateWithoutCourseInput[]
     connectOrCreate?: gradeCreateOrConnectWithoutCourseInput | gradeCreateOrConnectWithoutCourseInput[]
@@ -13299,6 +14584,14 @@ export namespace Prisma {
     update?: subjectUpdateWithWhereUniqueWithoutCourseInput | subjectUpdateWithWhereUniqueWithoutCourseInput[]
     updateMany?: subjectUpdateManyWithWhereWithoutCourseInput | subjectUpdateManyWithWhereWithoutCourseInput[]
     deleteMany?: subjectScalarWhereInput | subjectScalarWhereInput[]
+  }
+
+  export type NullableBigIntFieldUpdateOperationsInput = {
+    set?: bigint | number | null
+    increment?: bigint | number
+    decrement?: bigint | number
+    multiply?: bigint | number
+    divide?: bigint | number
   }
 
   export type gradeUncheckedUpdateManyWithoutCourseNestedInput = {
@@ -13415,14 +14708,6 @@ export namespace Prisma {
     update?: XOR<XOR<subjectUpdateToOneWithWhereWithoutGradeInput, subjectUpdateWithoutGradeInput>, subjectUncheckedUpdateWithoutGradeInput>
   }
 
-  export type NullableBigIntFieldUpdateOperationsInput = {
-    set?: bigint | number | null
-    increment?: bigint | number
-    decrement?: bigint | number
-    multiply?: bigint | number
-    divide?: bigint | number
-  }
-
   export type gradeCreateNestedManyWithoutStudentInput = {
     create?: XOR<gradeCreateWithoutStudentInput, gradeUncheckedCreateWithoutStudentInput> | gradeCreateWithoutStudentInput[] | gradeUncheckedCreateWithoutStudentInput[]
     connectOrCreate?: gradeCreateOrConnectWithoutStudentInput | gradeCreateOrConnectWithoutStudentInput[]
@@ -13534,12 +14819,6 @@ export namespace Prisma {
     connect?: courseWhereUniqueInput
   }
 
-  export type general_subjectCreateNestedOneWithoutSubjectInput = {
-    create?: XOR<general_subjectCreateWithoutSubjectInput, general_subjectUncheckedCreateWithoutSubjectInput>
-    connectOrCreate?: general_subjectCreateOrConnectWithoutSubjectInput
-    connect?: general_subjectWhereUniqueInput
-  }
-
   export type subject_prerequisiteCreateNestedManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectInput = {
     create?: XOR<subject_prerequisiteCreateWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectInput, subject_prerequisiteUncheckedCreateWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectInput> | subject_prerequisiteCreateWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectInput[] | subject_prerequisiteUncheckedCreateWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectInput[]
     connectOrCreate?: subject_prerequisiteCreateOrConnectWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectInput | subject_prerequisiteCreateOrConnectWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectInput[]
@@ -13617,16 +14896,6 @@ export namespace Prisma {
     upsert?: courseUpsertWithoutSubjectInput
     connect?: courseWhereUniqueInput
     update?: XOR<XOR<courseUpdateToOneWithWhereWithoutSubjectInput, courseUpdateWithoutSubjectInput>, courseUncheckedUpdateWithoutSubjectInput>
-  }
-
-  export type general_subjectUpdateOneWithoutSubjectNestedInput = {
-    create?: XOR<general_subjectCreateWithoutSubjectInput, general_subjectUncheckedCreateWithoutSubjectInput>
-    connectOrCreate?: general_subjectCreateOrConnectWithoutSubjectInput
-    upsert?: general_subjectUpsertWithoutSubjectInput
-    disconnect?: general_subjectWhereInput | boolean
-    delete?: general_subjectWhereInput | boolean
-    connect?: general_subjectWhereUniqueInput
-    update?: XOR<XOR<general_subjectUpdateToOneWithWhereWithoutSubjectInput, general_subjectUpdateWithoutSubjectInput>, general_subjectUncheckedUpdateWithoutSubjectInput>
   }
 
   export type subject_prerequisiteUpdateManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectNestedInput = {
@@ -13829,46 +15098,46 @@ export namespace Prisma {
     deleteMany?: gradeScalarWhereInput | gradeScalarWhereInput[]
   }
 
-  export type subjectCreateNestedManyWithoutGeneral_subjectInput = {
-    create?: XOR<subjectCreateWithoutGeneral_subjectInput, subjectUncheckedCreateWithoutGeneral_subjectInput> | subjectCreateWithoutGeneral_subjectInput[] | subjectUncheckedCreateWithoutGeneral_subjectInput[]
-    connectOrCreate?: subjectCreateOrConnectWithoutGeneral_subjectInput | subjectCreateOrConnectWithoutGeneral_subjectInput[]
-    createMany?: subjectCreateManyGeneral_subjectInputEnvelope
-    connect?: subjectWhereUniqueInput | subjectWhereUniqueInput[]
+  export type courseCreateNestedManyWithoutDegree_levelInput = {
+    create?: XOR<courseCreateWithoutDegree_levelInput, courseUncheckedCreateWithoutDegree_levelInput> | courseCreateWithoutDegree_levelInput[] | courseUncheckedCreateWithoutDegree_levelInput[]
+    connectOrCreate?: courseCreateOrConnectWithoutDegree_levelInput | courseCreateOrConnectWithoutDegree_levelInput[]
+    createMany?: courseCreateManyDegree_levelInputEnvelope
+    connect?: courseWhereUniqueInput | courseWhereUniqueInput[]
   }
 
-  export type subjectUncheckedCreateNestedManyWithoutGeneral_subjectInput = {
-    create?: XOR<subjectCreateWithoutGeneral_subjectInput, subjectUncheckedCreateWithoutGeneral_subjectInput> | subjectCreateWithoutGeneral_subjectInput[] | subjectUncheckedCreateWithoutGeneral_subjectInput[]
-    connectOrCreate?: subjectCreateOrConnectWithoutGeneral_subjectInput | subjectCreateOrConnectWithoutGeneral_subjectInput[]
-    createMany?: subjectCreateManyGeneral_subjectInputEnvelope
-    connect?: subjectWhereUniqueInput | subjectWhereUniqueInput[]
+  export type courseUncheckedCreateNestedManyWithoutDegree_levelInput = {
+    create?: XOR<courseCreateWithoutDegree_levelInput, courseUncheckedCreateWithoutDegree_levelInput> | courseCreateWithoutDegree_levelInput[] | courseUncheckedCreateWithoutDegree_levelInput[]
+    connectOrCreate?: courseCreateOrConnectWithoutDegree_levelInput | courseCreateOrConnectWithoutDegree_levelInput[]
+    createMany?: courseCreateManyDegree_levelInputEnvelope
+    connect?: courseWhereUniqueInput | courseWhereUniqueInput[]
   }
 
-  export type subjectUpdateManyWithoutGeneral_subjectNestedInput = {
-    create?: XOR<subjectCreateWithoutGeneral_subjectInput, subjectUncheckedCreateWithoutGeneral_subjectInput> | subjectCreateWithoutGeneral_subjectInput[] | subjectUncheckedCreateWithoutGeneral_subjectInput[]
-    connectOrCreate?: subjectCreateOrConnectWithoutGeneral_subjectInput | subjectCreateOrConnectWithoutGeneral_subjectInput[]
-    upsert?: subjectUpsertWithWhereUniqueWithoutGeneral_subjectInput | subjectUpsertWithWhereUniqueWithoutGeneral_subjectInput[]
-    createMany?: subjectCreateManyGeneral_subjectInputEnvelope
-    set?: subjectWhereUniqueInput | subjectWhereUniqueInput[]
-    disconnect?: subjectWhereUniqueInput | subjectWhereUniqueInput[]
-    delete?: subjectWhereUniqueInput | subjectWhereUniqueInput[]
-    connect?: subjectWhereUniqueInput | subjectWhereUniqueInput[]
-    update?: subjectUpdateWithWhereUniqueWithoutGeneral_subjectInput | subjectUpdateWithWhereUniqueWithoutGeneral_subjectInput[]
-    updateMany?: subjectUpdateManyWithWhereWithoutGeneral_subjectInput | subjectUpdateManyWithWhereWithoutGeneral_subjectInput[]
-    deleteMany?: subjectScalarWhereInput | subjectScalarWhereInput[]
+  export type courseUpdateManyWithoutDegree_levelNestedInput = {
+    create?: XOR<courseCreateWithoutDegree_levelInput, courseUncheckedCreateWithoutDegree_levelInput> | courseCreateWithoutDegree_levelInput[] | courseUncheckedCreateWithoutDegree_levelInput[]
+    connectOrCreate?: courseCreateOrConnectWithoutDegree_levelInput | courseCreateOrConnectWithoutDegree_levelInput[]
+    upsert?: courseUpsertWithWhereUniqueWithoutDegree_levelInput | courseUpsertWithWhereUniqueWithoutDegree_levelInput[]
+    createMany?: courseCreateManyDegree_levelInputEnvelope
+    set?: courseWhereUniqueInput | courseWhereUniqueInput[]
+    disconnect?: courseWhereUniqueInput | courseWhereUniqueInput[]
+    delete?: courseWhereUniqueInput | courseWhereUniqueInput[]
+    connect?: courseWhereUniqueInput | courseWhereUniqueInput[]
+    update?: courseUpdateWithWhereUniqueWithoutDegree_levelInput | courseUpdateWithWhereUniqueWithoutDegree_levelInput[]
+    updateMany?: courseUpdateManyWithWhereWithoutDegree_levelInput | courseUpdateManyWithWhereWithoutDegree_levelInput[]
+    deleteMany?: courseScalarWhereInput | courseScalarWhereInput[]
   }
 
-  export type subjectUncheckedUpdateManyWithoutGeneral_subjectNestedInput = {
-    create?: XOR<subjectCreateWithoutGeneral_subjectInput, subjectUncheckedCreateWithoutGeneral_subjectInput> | subjectCreateWithoutGeneral_subjectInput[] | subjectUncheckedCreateWithoutGeneral_subjectInput[]
-    connectOrCreate?: subjectCreateOrConnectWithoutGeneral_subjectInput | subjectCreateOrConnectWithoutGeneral_subjectInput[]
-    upsert?: subjectUpsertWithWhereUniqueWithoutGeneral_subjectInput | subjectUpsertWithWhereUniqueWithoutGeneral_subjectInput[]
-    createMany?: subjectCreateManyGeneral_subjectInputEnvelope
-    set?: subjectWhereUniqueInput | subjectWhereUniqueInput[]
-    disconnect?: subjectWhereUniqueInput | subjectWhereUniqueInput[]
-    delete?: subjectWhereUniqueInput | subjectWhereUniqueInput[]
-    connect?: subjectWhereUniqueInput | subjectWhereUniqueInput[]
-    update?: subjectUpdateWithWhereUniqueWithoutGeneral_subjectInput | subjectUpdateWithWhereUniqueWithoutGeneral_subjectInput[]
-    updateMany?: subjectUpdateManyWithWhereWithoutGeneral_subjectInput | subjectUpdateManyWithWhereWithoutGeneral_subjectInput[]
-    deleteMany?: subjectScalarWhereInput | subjectScalarWhereInput[]
+  export type courseUncheckedUpdateManyWithoutDegree_levelNestedInput = {
+    create?: XOR<courseCreateWithoutDegree_levelInput, courseUncheckedCreateWithoutDegree_levelInput> | courseCreateWithoutDegree_levelInput[] | courseUncheckedCreateWithoutDegree_levelInput[]
+    connectOrCreate?: courseCreateOrConnectWithoutDegree_levelInput | courseCreateOrConnectWithoutDegree_levelInput[]
+    upsert?: courseUpsertWithWhereUniqueWithoutDegree_levelInput | courseUpsertWithWhereUniqueWithoutDegree_levelInput[]
+    createMany?: courseCreateManyDegree_levelInputEnvelope
+    set?: courseWhereUniqueInput | courseWhereUniqueInput[]
+    disconnect?: courseWhereUniqueInput | courseWhereUniqueInput[]
+    delete?: courseWhereUniqueInput | courseWhereUniqueInput[]
+    connect?: courseWhereUniqueInput | courseWhereUniqueInput[]
+    update?: courseUpdateWithWhereUniqueWithoutDegree_levelInput | courseUpdateWithWhereUniqueWithoutDegree_levelInput[]
+    updateMany?: courseUpdateManyWithWhereWithoutDegree_levelInput | courseUpdateManyWithWhereWithoutDegree_levelInput[]
+    deleteMany?: courseScalarWhereInput | courseScalarWhereInput[]
   }
 
   export type NestedBigIntFilter<$PrismaModel = never> = {
@@ -13930,6 +15199,17 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedBigIntNullableFilter<$PrismaModel = never> = {
+    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
+    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
+    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
+    not?: NestedBigIntNullableFilter<$PrismaModel> | bigint | number | null
   }
 
   export type NestedBigIntWithAggregatesFilter<$PrismaModel = never> = {
@@ -14043,28 +15323,6 @@ export namespace Prisma {
     _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
-  export type NestedBigIntNullableFilter<$PrismaModel = never> = {
-    equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
-    in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
-    notIn?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
-    lt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    lte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gt?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    gte?: bigint | number | BigIntFieldRefInput<$PrismaModel>
-    not?: NestedBigIntNullableFilter<$PrismaModel> | bigint | number | null
-  }
-
-  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
-    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
-    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
-    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
-    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
-  }
-
   export type NestedBigIntNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: bigint | number | BigIntFieldRefInput<$PrismaModel> | null
     in?: bigint[] | number[] | ListBigIntFieldRefInput<$PrismaModel> | null
@@ -14090,6 +15348,17 @@ export namespace Prisma {
     gt?: number | FloatFieldRefInput<$PrismaModel>
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedDecimalNullableFilter<$PrismaModel = never> = {
+    equals?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel> | null
+    in?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    notIn?: Decimal[] | DecimalJsLike[] | number[] | string[] | ListDecimalFieldRefInput<$PrismaModel> | null
+    lt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    lte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gt?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    gte?: Decimal | DecimalJsLike | number | string | DecimalFieldRefInput<$PrismaModel>
+    not?: NestedDecimalNullableFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string | null
   }
 
   export type NestedDecimalNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -14141,6 +15410,23 @@ export namespace Prisma {
     _max?: NestedEnumstatusFilter<$PrismaModel>
   }
 
+  export type degree_levelCreateWithoutCourseInput = {
+    id?: bigint | number
+    created_at?: Date | string
+    title: string
+  }
+
+  export type degree_levelUncheckedCreateWithoutCourseInput = {
+    id?: bigint | number
+    created_at?: Date | string
+    title: string
+  }
+
+  export type degree_levelCreateOrConnectWithoutCourseInput = {
+    where: degree_levelWhereUniqueInput
+    create: XOR<degree_levelCreateWithoutCourseInput, degree_levelUncheckedCreateWithoutCourseInput>
+  }
+
   export type gradeCreateWithoutCourseInput = {
     id?: bigint | number
     created_at?: Date | string
@@ -14187,6 +15473,7 @@ export namespace Prisma {
     last_name: string
     email?: string | null
     birth_date: Date | string
+    student_no: string
     grade?: gradeCreateNestedManyWithoutStudentInput
     subject_reservation?: subject_reservationCreateNestedManyWithoutStudentInput
   }
@@ -14199,6 +15486,7 @@ export namespace Prisma {
     last_name: string
     email?: string | null
     birth_date: Date | string
+    student_no: string
     grade?: gradeUncheckedCreateNestedManyWithoutStudentInput
     subject_reservation?: subject_reservationUncheckedCreateNestedManyWithoutStudentInput
   }
@@ -14221,7 +15509,6 @@ export namespace Prisma {
     units: number
     updated_at?: Date | string | null
     grade?: gradeCreateNestedManyWithoutSubjectInput
-    general_subject?: general_subjectCreateNestedOneWithoutSubjectInput
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteCreateNestedManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectInput
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteCreateNestedManyWithoutSubject_subject_prerequisite_subject_idTosubjectInput
     subject_reservation?: subject_reservationCreateNestedManyWithoutSubjectInput
@@ -14234,7 +15521,6 @@ export namespace Prisma {
     title: string
     units: number
     updated_at?: Date | string | null
-    general_subject_id?: bigint | number | null
     grade?: gradeUncheckedCreateNestedManyWithoutSubjectInput
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteUncheckedCreateNestedManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectInput
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteUncheckedCreateNestedManyWithoutSubject_subject_prerequisite_subject_idTosubjectInput
@@ -14249,6 +15535,29 @@ export namespace Prisma {
   export type subjectCreateManyCourseInputEnvelope = {
     data: subjectCreateManyCourseInput | subjectCreateManyCourseInput[]
     skipDuplicates?: boolean
+  }
+
+  export type degree_levelUpsertWithoutCourseInput = {
+    update: XOR<degree_levelUpdateWithoutCourseInput, degree_levelUncheckedUpdateWithoutCourseInput>
+    create: XOR<degree_levelCreateWithoutCourseInput, degree_levelUncheckedCreateWithoutCourseInput>
+    where?: degree_levelWhereInput
+  }
+
+  export type degree_levelUpdateToOneWithWhereWithoutCourseInput = {
+    where?: degree_levelWhereInput
+    data: XOR<degree_levelUpdateWithoutCourseInput, degree_levelUncheckedUpdateWithoutCourseInput>
+  }
+
+  export type degree_levelUpdateWithoutCourseInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type degree_levelUncheckedUpdateWithoutCourseInput = {
+    id?: BigIntFieldUpdateOperationsInput | bigint | number
+    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    title?: StringFieldUpdateOperationsInput | string
   }
 
   export type gradeUpsertWithWhereUniqueWithoutCourseInput = {
@@ -14313,6 +15622,7 @@ export namespace Prisma {
     email?: StringNullableFilter<"student"> | string | null
     birth_date?: DateTimeFilter<"student"> | Date | string
     course_id?: BigIntFilter<"student"> | bigint | number
+    student_no?: StringFilter<"student"> | string
   }
 
   export type subjectUpsertWithWhereUniqueWithoutCourseInput = {
@@ -14342,7 +15652,6 @@ export namespace Prisma {
     units?: IntFilter<"subject"> | number
     updated_at?: DateTimeNullableFilter<"subject"> | Date | string | null
     course_id?: BigIntFilter<"subject"> | bigint | number
-    general_subject_id?: BigIntNullableFilter<"subject"> | bigint | number | null
   }
 
   export type courseCreateWithoutGradeInput = {
@@ -14352,6 +15661,7 @@ export namespace Prisma {
     code: string
     name: string
     description?: string | null
+    degree_level?: degree_levelCreateNestedOneWithoutCourseInput
     student?: studentCreateNestedManyWithoutCourseInput
     subject?: subjectCreateNestedManyWithoutCourseInput
   }
@@ -14363,6 +15673,7 @@ export namespace Prisma {
     code: string
     name: string
     description?: string | null
+    degree_level_id?: bigint | number | null
     student?: studentUncheckedCreateNestedManyWithoutCourseInput
     subject?: subjectUncheckedCreateNestedManyWithoutCourseInput
   }
@@ -14376,7 +15687,7 @@ export namespace Prisma {
     id?: bigint | number
     created_at?: Date | string
     email: string
-    role: string
+    role?: string
     updated_at?: Date | string | null
   }
 
@@ -14384,7 +15695,7 @@ export namespace Prisma {
     id?: bigint | number
     created_at?: Date | string
     email: string
-    role: string
+    role?: string
     updated_at?: Date | string | null
   }
 
@@ -14401,6 +15712,7 @@ export namespace Prisma {
     last_name: string
     email?: string | null
     birth_date: Date | string
+    student_no: string
     course: courseCreateNestedOneWithoutStudentInput
     subject_reservation?: subject_reservationCreateNestedManyWithoutStudentInput
   }
@@ -14414,6 +15726,7 @@ export namespace Prisma {
     email?: string | null
     birth_date: Date | string
     course_id: bigint | number
+    student_no: string
     subject_reservation?: subject_reservationUncheckedCreateNestedManyWithoutStudentInput
   }
 
@@ -14430,7 +15743,6 @@ export namespace Prisma {
     units: number
     updated_at?: Date | string | null
     course: courseCreateNestedOneWithoutSubjectInput
-    general_subject?: general_subjectCreateNestedOneWithoutSubjectInput
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteCreateNestedManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectInput
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteCreateNestedManyWithoutSubject_subject_prerequisite_subject_idTosubjectInput
     subject_reservation?: subject_reservationCreateNestedManyWithoutSubjectInput
@@ -14444,7 +15756,6 @@ export namespace Prisma {
     units: number
     updated_at?: Date | string | null
     course_id: bigint | number
-    general_subject_id?: bigint | number | null
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteUncheckedCreateNestedManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectInput
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteUncheckedCreateNestedManyWithoutSubject_subject_prerequisite_subject_idTosubjectInput
     subject_reservation?: subject_reservationUncheckedCreateNestedManyWithoutSubjectInput
@@ -14473,6 +15784,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    degree_level?: degree_levelUpdateOneWithoutCourseNestedInput
     student?: studentUpdateManyWithoutCourseNestedInput
     subject?: subjectUpdateManyWithoutCourseNestedInput
   }
@@ -14484,6 +15796,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    degree_level_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     student?: studentUncheckedUpdateManyWithoutCourseNestedInput
     subject?: subjectUncheckedUpdateManyWithoutCourseNestedInput
   }
@@ -14534,6 +15847,7 @@ export namespace Prisma {
     last_name?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    student_no?: StringFieldUpdateOperationsInput | string
     course?: courseUpdateOneRequiredWithoutStudentNestedInput
     subject_reservation?: subject_reservationUpdateManyWithoutStudentNestedInput
   }
@@ -14547,6 +15861,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
     course_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    student_no?: StringFieldUpdateOperationsInput | string
     subject_reservation?: subject_reservationUncheckedUpdateManyWithoutStudentNestedInput
   }
 
@@ -14569,7 +15884,6 @@ export namespace Prisma {
     units?: IntFieldUpdateOperationsInput | number
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     course?: courseUpdateOneRequiredWithoutSubjectNestedInput
-    general_subject?: general_subjectUpdateOneWithoutSubjectNestedInput
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteUpdateManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectNestedInput
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteUpdateManyWithoutSubject_subject_prerequisite_subject_idTosubjectNestedInput
     subject_reservation?: subject_reservationUpdateManyWithoutSubjectNestedInput
@@ -14583,7 +15897,6 @@ export namespace Prisma {
     units?: IntFieldUpdateOperationsInput | number
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     course_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    general_subject_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteUncheckedUpdateManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectNestedInput
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteUncheckedUpdateManyWithoutSubject_subject_prerequisite_subject_idTosubjectNestedInput
     subject_reservation?: subject_reservationUncheckedUpdateManyWithoutSubjectNestedInput
@@ -14634,6 +15947,7 @@ export namespace Prisma {
     code: string
     name: string
     description?: string | null
+    degree_level?: degree_levelCreateNestedOneWithoutCourseInput
     grade?: gradeCreateNestedManyWithoutCourseInput
     subject?: subjectCreateNestedManyWithoutCourseInput
   }
@@ -14645,6 +15959,7 @@ export namespace Prisma {
     code: string
     name: string
     description?: string | null
+    degree_level_id?: bigint | number | null
     grade?: gradeUncheckedCreateNestedManyWithoutCourseInput
     subject?: subjectUncheckedCreateNestedManyWithoutCourseInput
   }
@@ -14712,6 +16027,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    degree_level?: degree_levelUpdateOneWithoutCourseNestedInput
     grade?: gradeUpdateManyWithoutCourseNestedInput
     subject?: subjectUpdateManyWithoutCourseNestedInput
   }
@@ -14723,6 +16039,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    degree_level_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     grade?: gradeUncheckedUpdateManyWithoutCourseNestedInput
     subject?: subjectUncheckedUpdateManyWithoutCourseNestedInput
   }
@@ -14799,6 +16116,7 @@ export namespace Prisma {
     code: string
     name: string
     description?: string | null
+    degree_level?: degree_levelCreateNestedOneWithoutCourseInput
     grade?: gradeCreateNestedManyWithoutCourseInput
     student?: studentCreateNestedManyWithoutCourseInput
   }
@@ -14810,6 +16128,7 @@ export namespace Prisma {
     code: string
     name: string
     description?: string | null
+    degree_level_id?: bigint | number | null
     grade?: gradeUncheckedCreateNestedManyWithoutCourseInput
     student?: studentUncheckedCreateNestedManyWithoutCourseInput
   }
@@ -14817,27 +16136,6 @@ export namespace Prisma {
   export type courseCreateOrConnectWithoutSubjectInput = {
     where: courseWhereUniqueInput
     create: XOR<courseCreateWithoutSubjectInput, courseUncheckedCreateWithoutSubjectInput>
-  }
-
-  export type general_subjectCreateWithoutSubjectInput = {
-    id?: bigint | number
-    created_at?: Date | string
-    title: string
-    code: string
-    units: number
-  }
-
-  export type general_subjectUncheckedCreateWithoutSubjectInput = {
-    id?: bigint | number
-    created_at?: Date | string
-    title: string
-    code: string
-    units: number
-  }
-
-  export type general_subjectCreateOrConnectWithoutSubjectInput = {
-    where: general_subjectWhereUniqueInput
-    create: XOR<general_subjectCreateWithoutSubjectInput, general_subjectUncheckedCreateWithoutSubjectInput>
   }
 
   export type subject_prerequisiteCreateWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectInput = {
@@ -14942,6 +16240,7 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    degree_level?: degree_levelUpdateOneWithoutCourseNestedInput
     grade?: gradeUpdateManyWithoutCourseNestedInput
     student?: studentUpdateManyWithoutCourseNestedInput
   }
@@ -14953,35 +16252,9 @@ export namespace Prisma {
     code?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: NullableStringFieldUpdateOperationsInput | string | null
+    degree_level_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     grade?: gradeUncheckedUpdateManyWithoutCourseNestedInput
     student?: studentUncheckedUpdateManyWithoutCourseNestedInput
-  }
-
-  export type general_subjectUpsertWithoutSubjectInput = {
-    update: XOR<general_subjectUpdateWithoutSubjectInput, general_subjectUncheckedUpdateWithoutSubjectInput>
-    create: XOR<general_subjectCreateWithoutSubjectInput, general_subjectUncheckedCreateWithoutSubjectInput>
-    where?: general_subjectWhereInput
-  }
-
-  export type general_subjectUpdateToOneWithWhereWithoutSubjectInput = {
-    where?: general_subjectWhereInput
-    data: XOR<general_subjectUpdateWithoutSubjectInput, general_subjectUncheckedUpdateWithoutSubjectInput>
-  }
-
-  export type general_subjectUpdateWithoutSubjectInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    title?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
-    units?: IntFieldUpdateOperationsInput | number
-  }
-
-  export type general_subjectUncheckedUpdateWithoutSubjectInput = {
-    id?: BigIntFieldUpdateOperationsInput | bigint | number
-    created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    title?: StringFieldUpdateOperationsInput | string
-    code?: StringFieldUpdateOperationsInput | string
-    units?: IntFieldUpdateOperationsInput | number
   }
 
   export type subject_prerequisiteUpsertWithWhereUniqueWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectInput = {
@@ -15051,7 +16324,6 @@ export namespace Prisma {
     updated_at?: Date | string | null
     grade?: gradeCreateNestedManyWithoutSubjectInput
     course: courseCreateNestedOneWithoutSubjectInput
-    general_subject?: general_subjectCreateNestedOneWithoutSubjectInput
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteCreateNestedManyWithoutSubject_subject_prerequisite_subject_idTosubjectInput
     subject_reservation?: subject_reservationCreateNestedManyWithoutSubjectInput
   }
@@ -15064,7 +16336,6 @@ export namespace Prisma {
     units: number
     updated_at?: Date | string | null
     course_id: bigint | number
-    general_subject_id?: bigint | number | null
     grade?: gradeUncheckedCreateNestedManyWithoutSubjectInput
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteUncheckedCreateNestedManyWithoutSubject_subject_prerequisite_subject_idTosubjectInput
     subject_reservation?: subject_reservationUncheckedCreateNestedManyWithoutSubjectInput
@@ -15084,7 +16355,6 @@ export namespace Prisma {
     updated_at?: Date | string | null
     grade?: gradeCreateNestedManyWithoutSubjectInput
     course: courseCreateNestedOneWithoutSubjectInput
-    general_subject?: general_subjectCreateNestedOneWithoutSubjectInput
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteCreateNestedManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectInput
     subject_reservation?: subject_reservationCreateNestedManyWithoutSubjectInput
   }
@@ -15097,7 +16367,6 @@ export namespace Prisma {
     units: number
     updated_at?: Date | string | null
     course_id: bigint | number
-    general_subject_id?: bigint | number | null
     grade?: gradeUncheckedCreateNestedManyWithoutSubjectInput
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteUncheckedCreateNestedManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectInput
     subject_reservation?: subject_reservationUncheckedCreateNestedManyWithoutSubjectInput
@@ -15128,7 +16397,6 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     grade?: gradeUpdateManyWithoutSubjectNestedInput
     course?: courseUpdateOneRequiredWithoutSubjectNestedInput
-    general_subject?: general_subjectUpdateOneWithoutSubjectNestedInput
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteUpdateManyWithoutSubject_subject_prerequisite_subject_idTosubjectNestedInput
     subject_reservation?: subject_reservationUpdateManyWithoutSubjectNestedInput
   }
@@ -15141,7 +16409,6 @@ export namespace Prisma {
     units?: IntFieldUpdateOperationsInput | number
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     course_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    general_subject_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     grade?: gradeUncheckedUpdateManyWithoutSubjectNestedInput
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteUncheckedUpdateManyWithoutSubject_subject_prerequisite_subject_idTosubjectNestedInput
     subject_reservation?: subject_reservationUncheckedUpdateManyWithoutSubjectNestedInput
@@ -15167,7 +16434,6 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     grade?: gradeUpdateManyWithoutSubjectNestedInput
     course?: courseUpdateOneRequiredWithoutSubjectNestedInput
-    general_subject?: general_subjectUpdateOneWithoutSubjectNestedInput
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteUpdateManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectNestedInput
     subject_reservation?: subject_reservationUpdateManyWithoutSubjectNestedInput
   }
@@ -15180,7 +16446,6 @@ export namespace Prisma {
     units?: IntFieldUpdateOperationsInput | number
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     course_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    general_subject_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     grade?: gradeUncheckedUpdateManyWithoutSubjectNestedInput
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteUncheckedUpdateManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectNestedInput
     subject_reservation?: subject_reservationUncheckedUpdateManyWithoutSubjectNestedInput
@@ -15194,6 +16459,7 @@ export namespace Prisma {
     last_name: string
     email?: string | null
     birth_date: Date | string
+    student_no: string
     grade?: gradeCreateNestedManyWithoutStudentInput
     course: courseCreateNestedOneWithoutStudentInput
   }
@@ -15207,6 +16473,7 @@ export namespace Prisma {
     email?: string | null
     birth_date: Date | string
     course_id: bigint | number
+    student_no: string
     grade?: gradeUncheckedCreateNestedManyWithoutStudentInput
   }
 
@@ -15224,7 +16491,6 @@ export namespace Prisma {
     updated_at?: Date | string | null
     grade?: gradeCreateNestedManyWithoutSubjectInput
     course: courseCreateNestedOneWithoutSubjectInput
-    general_subject?: general_subjectCreateNestedOneWithoutSubjectInput
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteCreateNestedManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectInput
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteCreateNestedManyWithoutSubject_subject_prerequisite_subject_idTosubjectInput
   }
@@ -15237,7 +16503,6 @@ export namespace Prisma {
     units: number
     updated_at?: Date | string | null
     course_id: bigint | number
-    general_subject_id?: bigint | number | null
     grade?: gradeUncheckedCreateNestedManyWithoutSubjectInput
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteUncheckedCreateNestedManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectInput
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteUncheckedCreateNestedManyWithoutSubject_subject_prerequisite_subject_idTosubjectInput
@@ -15267,6 +16532,7 @@ export namespace Prisma {
     last_name?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    student_no?: StringFieldUpdateOperationsInput | string
     grade?: gradeUpdateManyWithoutStudentNestedInput
     course?: courseUpdateOneRequiredWithoutStudentNestedInput
   }
@@ -15280,6 +16546,7 @@ export namespace Prisma {
     email?: NullableStringFieldUpdateOperationsInput | string | null
     birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
     course_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    student_no?: StringFieldUpdateOperationsInput | string
     grade?: gradeUncheckedUpdateManyWithoutStudentNestedInput
   }
 
@@ -15303,7 +16570,6 @@ export namespace Prisma {
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     grade?: gradeUpdateManyWithoutSubjectNestedInput
     course?: courseUpdateOneRequiredWithoutSubjectNestedInput
-    general_subject?: general_subjectUpdateOneWithoutSubjectNestedInput
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteUpdateManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectNestedInput
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteUpdateManyWithoutSubject_subject_prerequisite_subject_idTosubjectNestedInput
   }
@@ -15316,7 +16582,6 @@ export namespace Prisma {
     units?: IntFieldUpdateOperationsInput | number
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     course_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    general_subject_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     grade?: gradeUncheckedUpdateManyWithoutSubjectNestedInput
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteUncheckedUpdateManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectNestedInput
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteUncheckedUpdateManyWithoutSubject_subject_prerequisite_subject_idTosubjectNestedInput
@@ -15376,58 +16641,67 @@ export namespace Prisma {
     data: XOR<gradeUpdateManyMutationInput, gradeUncheckedUpdateManyWithoutUserInput>
   }
 
-  export type subjectCreateWithoutGeneral_subjectInput = {
+  export type courseCreateWithoutDegree_levelInput = {
     id?: bigint | number
     created_at?: Date | string
-    code: string
-    title: string
-    units: number
     updated_at?: Date | string | null
-    grade?: gradeCreateNestedManyWithoutSubjectInput
-    course: courseCreateNestedOneWithoutSubjectInput
-    subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteCreateNestedManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectInput
-    subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteCreateNestedManyWithoutSubject_subject_prerequisite_subject_idTosubjectInput
-    subject_reservation?: subject_reservationCreateNestedManyWithoutSubjectInput
+    code: string
+    name: string
+    description?: string | null
+    grade?: gradeCreateNestedManyWithoutCourseInput
+    student?: studentCreateNestedManyWithoutCourseInput
+    subject?: subjectCreateNestedManyWithoutCourseInput
   }
 
-  export type subjectUncheckedCreateWithoutGeneral_subjectInput = {
+  export type courseUncheckedCreateWithoutDegree_levelInput = {
     id?: bigint | number
     created_at?: Date | string
-    code: string
-    title: string
-    units: number
     updated_at?: Date | string | null
-    course_id: bigint | number
-    grade?: gradeUncheckedCreateNestedManyWithoutSubjectInput
-    subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteUncheckedCreateNestedManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectInput
-    subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteUncheckedCreateNestedManyWithoutSubject_subject_prerequisite_subject_idTosubjectInput
-    subject_reservation?: subject_reservationUncheckedCreateNestedManyWithoutSubjectInput
+    code: string
+    name: string
+    description?: string | null
+    grade?: gradeUncheckedCreateNestedManyWithoutCourseInput
+    student?: studentUncheckedCreateNestedManyWithoutCourseInput
+    subject?: subjectUncheckedCreateNestedManyWithoutCourseInput
   }
 
-  export type subjectCreateOrConnectWithoutGeneral_subjectInput = {
-    where: subjectWhereUniqueInput
-    create: XOR<subjectCreateWithoutGeneral_subjectInput, subjectUncheckedCreateWithoutGeneral_subjectInput>
+  export type courseCreateOrConnectWithoutDegree_levelInput = {
+    where: courseWhereUniqueInput
+    create: XOR<courseCreateWithoutDegree_levelInput, courseUncheckedCreateWithoutDegree_levelInput>
   }
 
-  export type subjectCreateManyGeneral_subjectInputEnvelope = {
-    data: subjectCreateManyGeneral_subjectInput | subjectCreateManyGeneral_subjectInput[]
+  export type courseCreateManyDegree_levelInputEnvelope = {
+    data: courseCreateManyDegree_levelInput | courseCreateManyDegree_levelInput[]
     skipDuplicates?: boolean
   }
 
-  export type subjectUpsertWithWhereUniqueWithoutGeneral_subjectInput = {
-    where: subjectWhereUniqueInput
-    update: XOR<subjectUpdateWithoutGeneral_subjectInput, subjectUncheckedUpdateWithoutGeneral_subjectInput>
-    create: XOR<subjectCreateWithoutGeneral_subjectInput, subjectUncheckedCreateWithoutGeneral_subjectInput>
+  export type courseUpsertWithWhereUniqueWithoutDegree_levelInput = {
+    where: courseWhereUniqueInput
+    update: XOR<courseUpdateWithoutDegree_levelInput, courseUncheckedUpdateWithoutDegree_levelInput>
+    create: XOR<courseCreateWithoutDegree_levelInput, courseUncheckedCreateWithoutDegree_levelInput>
   }
 
-  export type subjectUpdateWithWhereUniqueWithoutGeneral_subjectInput = {
-    where: subjectWhereUniqueInput
-    data: XOR<subjectUpdateWithoutGeneral_subjectInput, subjectUncheckedUpdateWithoutGeneral_subjectInput>
+  export type courseUpdateWithWhereUniqueWithoutDegree_levelInput = {
+    where: courseWhereUniqueInput
+    data: XOR<courseUpdateWithoutDegree_levelInput, courseUncheckedUpdateWithoutDegree_levelInput>
   }
 
-  export type subjectUpdateManyWithWhereWithoutGeneral_subjectInput = {
-    where: subjectScalarWhereInput
-    data: XOR<subjectUpdateManyMutationInput, subjectUncheckedUpdateManyWithoutGeneral_subjectInput>
+  export type courseUpdateManyWithWhereWithoutDegree_levelInput = {
+    where: courseScalarWhereInput
+    data: XOR<courseUpdateManyMutationInput, courseUncheckedUpdateManyWithoutDegree_levelInput>
+  }
+
+  export type courseScalarWhereInput = {
+    AND?: courseScalarWhereInput | courseScalarWhereInput[]
+    OR?: courseScalarWhereInput[]
+    NOT?: courseScalarWhereInput | courseScalarWhereInput[]
+    id?: BigIntFilter<"course"> | bigint | number
+    created_at?: DateTimeFilter<"course"> | Date | string
+    updated_at?: DateTimeNullableFilter<"course"> | Date | string | null
+    code?: StringFilter<"course"> | string
+    name?: StringFilter<"course"> | string
+    description?: StringNullableFilter<"course"> | string | null
+    degree_level_id?: BigIntNullableFilter<"course"> | bigint | number | null
   }
 
   export type gradeCreateManyCourseInput = {
@@ -15452,6 +16726,7 @@ export namespace Prisma {
     last_name: string
     email?: string | null
     birth_date: Date | string
+    student_no: string
   }
 
   export type subjectCreateManyCourseInput = {
@@ -15461,7 +16736,6 @@ export namespace Prisma {
     title: string
     units: number
     updated_at?: Date | string | null
-    general_subject_id?: bigint | number | null
   }
 
   export type gradeUpdateWithoutCourseInput = {
@@ -15514,6 +16788,7 @@ export namespace Prisma {
     last_name?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    student_no?: StringFieldUpdateOperationsInput | string
     grade?: gradeUpdateManyWithoutStudentNestedInput
     subject_reservation?: subject_reservationUpdateManyWithoutStudentNestedInput
   }
@@ -15526,6 +16801,7 @@ export namespace Prisma {
     last_name?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    student_no?: StringFieldUpdateOperationsInput | string
     grade?: gradeUncheckedUpdateManyWithoutStudentNestedInput
     subject_reservation?: subject_reservationUncheckedUpdateManyWithoutStudentNestedInput
   }
@@ -15538,6 +16814,7 @@ export namespace Prisma {
     last_name?: StringFieldUpdateOperationsInput | string
     email?: NullableStringFieldUpdateOperationsInput | string | null
     birth_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    student_no?: StringFieldUpdateOperationsInput | string
   }
 
   export type subjectUpdateWithoutCourseInput = {
@@ -15548,7 +16825,6 @@ export namespace Prisma {
     units?: IntFieldUpdateOperationsInput | number
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     grade?: gradeUpdateManyWithoutSubjectNestedInput
-    general_subject?: general_subjectUpdateOneWithoutSubjectNestedInput
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteUpdateManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectNestedInput
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteUpdateManyWithoutSubject_subject_prerequisite_subject_idTosubjectNestedInput
     subject_reservation?: subject_reservationUpdateManyWithoutSubjectNestedInput
@@ -15561,7 +16837,6 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     units?: IntFieldUpdateOperationsInput | number
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    general_subject_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
     grade?: gradeUncheckedUpdateManyWithoutSubjectNestedInput
     subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteUncheckedUpdateManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectNestedInput
     subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteUncheckedUpdateManyWithoutSubject_subject_prerequisite_subject_idTosubjectNestedInput
@@ -15575,7 +16850,6 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     units?: IntFieldUpdateOperationsInput | number
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    general_subject_id?: NullableBigIntFieldUpdateOperationsInput | bigint | number | null
   }
 
   export type gradeCreateManyStudentInput = {
@@ -15850,52 +17124,46 @@ export namespace Prisma {
     remark?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
-  export type subjectCreateManyGeneral_subjectInput = {
+  export type courseCreateManyDegree_levelInput = {
     id?: bigint | number
     created_at?: Date | string
-    code: string
-    title: string
-    units: number
     updated_at?: Date | string | null
-    course_id: bigint | number
+    code: string
+    name: string
+    description?: string | null
   }
 
-  export type subjectUpdateWithoutGeneral_subjectInput = {
+  export type courseUpdateWithoutDegree_levelInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    code?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    units?: IntFieldUpdateOperationsInput | number
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    grade?: gradeUpdateManyWithoutSubjectNestedInput
-    course?: courseUpdateOneRequiredWithoutSubjectNestedInput
-    subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteUpdateManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectNestedInput
-    subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteUpdateManyWithoutSubject_subject_prerequisite_subject_idTosubjectNestedInput
-    subject_reservation?: subject_reservationUpdateManyWithoutSubjectNestedInput
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: gradeUpdateManyWithoutCourseNestedInput
+    student?: studentUpdateManyWithoutCourseNestedInput
+    subject?: subjectUpdateManyWithoutCourseNestedInput
   }
 
-  export type subjectUncheckedUpdateWithoutGeneral_subjectInput = {
+  export type courseUncheckedUpdateWithoutDegree_levelInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    code?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    units?: IntFieldUpdateOperationsInput | number
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    course_id?: BigIntFieldUpdateOperationsInput | bigint | number
-    grade?: gradeUncheckedUpdateManyWithoutSubjectNestedInput
-    subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject?: subject_prerequisiteUncheckedUpdateManyWithoutSubject_subject_prerequisite_prerequisites_subject_idTosubjectNestedInput
-    subject_prerequisite_subject_prerequisite_subject_idTosubject?: subject_prerequisiteUncheckedUpdateManyWithoutSubject_subject_prerequisite_subject_idTosubjectNestedInput
-    subject_reservation?: subject_reservationUncheckedUpdateManyWithoutSubjectNestedInput
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
+    grade?: gradeUncheckedUpdateManyWithoutCourseNestedInput
+    student?: studentUncheckedUpdateManyWithoutCourseNestedInput
+    subject?: subjectUncheckedUpdateManyWithoutCourseNestedInput
   }
 
-  export type subjectUncheckedUpdateManyWithoutGeneral_subjectInput = {
+  export type courseUncheckedUpdateManyWithoutDegree_levelInput = {
     id?: BigIntFieldUpdateOperationsInput | bigint | number
     created_at?: DateTimeFieldUpdateOperationsInput | Date | string
-    code?: StringFieldUpdateOperationsInput | string
-    title?: StringFieldUpdateOperationsInput | string
-    units?: IntFieldUpdateOperationsInput | number
     updated_at?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
-    course_id?: BigIntFieldUpdateOperationsInput | bigint | number
+    code?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    description?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
 

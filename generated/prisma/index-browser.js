@@ -126,7 +126,8 @@ exports.Prisma.CourseScalarFieldEnum = {
   updated_at: 'updated_at',
   code: 'code',
   name: 'name',
-  description: 'description'
+  description: 'description',
+  degree_level_id: 'degree_level_id'
 };
 
 exports.Prisma.GradeScalarFieldEnum = {
@@ -152,7 +153,8 @@ exports.Prisma.StudentScalarFieldEnum = {
   last_name: 'last_name',
   email: 'email',
   birth_date: 'birth_date',
-  course_id: 'course_id'
+  course_id: 'course_id',
+  student_no: 'student_no'
 };
 
 exports.Prisma.SubjectScalarFieldEnum = {
@@ -162,8 +164,7 @@ exports.Prisma.SubjectScalarFieldEnum = {
   title: 'title',
   units: 'units',
   updated_at: 'updated_at',
-  course_id: 'course_id',
-  general_subject_id: 'general_subject_id'
+  course_id: 'course_id'
 };
 
 exports.Prisma.Subject_prerequisiteScalarFieldEnum = {
@@ -197,6 +198,12 @@ exports.Prisma.General_subjectScalarFieldEnum = {
   units: 'units'
 };
 
+exports.Prisma.Degree_levelScalarFieldEnum = {
+  id: 'id',
+  created_at: 'created_at',
+  title: 'title'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -224,7 +231,8 @@ exports.Prisma.ModelName = {
   subject_prerequisite: 'subject_prerequisite',
   subject_reservation: 'subject_reservation',
   user: 'user',
-  general_subject: 'general_subject'
+  general_subject: 'general_subject',
+  degree_level: 'degree_level'
 };
 
 /**

@@ -6,6 +6,7 @@ import { LoginFormModel, UserFormModel } from "@/lib/model/user";
 export async function LoginUser(loginForm: LoginFormModel) {
   try {
     const supabaseServer = await supabaseServerClient();
+    //after successful login, supabase assigns a session for auth
     const { data: serverUser, error } =
       await supabaseServer.auth.signInWithPassword({
         email: loginForm.email,
@@ -27,6 +28,7 @@ export async function LoginUser(loginForm: LoginFormModel) {
 export async function GetUserRole() {
   try {
     const supabaseServer = await supabaseServerClient();
+    //Gets the user info via supabase auth
     const { data: serverUser, error } = await supabaseServer.auth.getUser();
     const user = serverUser.user;
 
@@ -44,12 +46,17 @@ export async function GetUserRole() {
 
 export async function CreateUser(userForm: UserFormModel) {
   try {
+    //Inserts into the auht schema of supabase
+    //This approach allows authentication via supabase
     const supabaseServer = await supabaseServerClient();
     const { data: serverUser, error } = await supabaseServer.auth.signUp({
       email: userForm.email,
       password: userForm.password,
     });
 
+    //After inserting into auth users a trigger in supabase is activated that inserts into a table for the public schema user table
+
+    //Prisma handles updating the roles of the user in the public schema user table
     const updatedUser = await prisma.user.update({
       where: { email: serverUser.user?.email },
       data: { role: userForm.role },

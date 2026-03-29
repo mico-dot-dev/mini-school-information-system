@@ -9,15 +9,17 @@ datasource db {
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model course {
-  id          BigInt    @id @default(autoincrement())
-  created_at  DateTime  @default(now()) @db.Timestamptz(6)
-  updated_at  DateTime? @db.Timestamptz(6)
-  code        String
-  name        String
-  description String?
-  grade       grade[]
-  student     student[]
-  subject     subject[]
+  id              BigInt        @id @default(autoincrement())
+  created_at      DateTime      @default(now()) @db.Timestamptz(6)
+  updated_at      DateTime?     @db.Timestamptz(6)
+  code            String
+  name            String
+  description     String?
+  degree_level_id BigInt?
+  degree_level    degree_level? @relation(fields: [degree_level_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  grade           grade[]
+  student         student[]
+  subject         subject[]
 }
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
@@ -50,6 +52,7 @@ model student {
   email               String?               @unique(map: "students_email_key")
   birth_date          DateTime              @db.Date
   course_id           BigInt
+  student_no          String                @unique
   grade               grade[]
   course              course                @relation(fields: [course_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "students_course_id_fkey")
   subject_reservation subject_reservation[]
@@ -64,10 +67,8 @@ model subject {
   units                                                                       Int                    @db.SmallInt
   updated_at                                                                  DateTime?              @db.Timestamptz(6)
   course_id                                                                   BigInt
-  general_subject_id                                                          BigInt?
   grade                                                                       grade[]
   course                                                                      course                 @relation(fields: [course_id], references: [id], onDelete: Cascade)
-  general_subject                                                             general_subject?       @relation(fields: [general_subject_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
   subject_prerequisite_subject_prerequisite_prerequisites_subject_idTosubject subject_prerequisite[] @relation("subject_prerequisite_prerequisites_subject_idTosubject")
   subject_prerequisite_subject_prerequisite_subject_idTosubject               subject_prerequisite[] @relation("subject_prerequisite_subject_idTosubject")
   subject_reservation                                                         subject_reservation[]
@@ -99,19 +100,26 @@ model user {
   id         BigInt    @id @default(autoincrement())
   created_at DateTime  @default(now()) @db.Timestamptz(6)
   email      String    @unique
-  role       String
+  role       String    @default("")
   updated_at DateTime? @db.Timestamptz(6)
   grade      grade[]
 }
 
 /// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
 model general_subject {
-  id         BigInt    @id @default(autoincrement())
-  created_at DateTime  @default(now()) @db.Timestamptz(6)
+  id         BigInt   @id @default(autoincrement())
+  created_at DateTime @default(now()) @db.Timestamptz(6)
   title      String
   code       String
-  units      Int       @db.SmallInt
-  subject    subject[]
+  units      Int      @db.SmallInt
+}
+
+/// This model contains row level security and requires additional setup for migrations. Visit https://pris.ly/d/row-level-security for more info.
+model degree_level {
+  id         BigInt   @id @default(autoincrement())
+  created_at DateTime @default(now()) @db.Timestamptz(6)
+  title      String   @unique
+  course     course[]
 }
 
 enum status {
