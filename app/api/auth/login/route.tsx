@@ -10,5 +10,6 @@ export async function POST(request: Request) {
       return new Response("Successfull Sent Data", { status: 200 });
   } catch (error) {
     console.log(error);
+    return new Response("Error Sending Data", { status: 500 });
   }
 }

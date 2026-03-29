@@ -12,7 +12,7 @@ export default async function MainPage({ params }: DashboardPageProps) {
   //Checks whether the slug sent a page name that exists
   const isValidPage =
     typeof page === "string" && Object.values(Page).includes(page as Page);
-  if (!isValidPage) notFound();
+  // if (!isValidPage) notFound();
 
   return (
     <div className="flex flex-col w-full h-full">
