@@ -1,9 +1,9 @@
 "use client";
-
 import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { DegreeLevel } from "@/lib/enum/degreeLevel";
 import { SubjectFormModel, SubjectFormSchema } from "@/lib/model/subject";
+import { CourseFormModel } from "@/lib/model/course";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 function AddSubjectForm() {
@@ -18,31 +18,47 @@ function AddSubjectForm() {
     },
   });
 
-  const [subjects, setSubjects] = useState<SubjectFormModel[]>([]);
-
   const selectedDegree = watch("degreeLevel");
-  console.log(selectedDegree);
+  const [courses, setCourses] = useState<CourseFormModel[]>([]);
+
+  // useEffect(() => {
+  //   console.log(selectedDegree);
+  // }, [selectedDegree]);
 
   useEffect(() => {
-    console.log(selectedDegree);
     if (!selectedDegree) return;
 
-    async function fetchSubjects() {
-      //   const res = await fetch(`/api/course/by-degree/${selectedDegree}`, {
-      //     method: "GET",
-      //     headers: {
-      //       "Content-Type": "application/json",
-      //     },
-      //   });
-      //   const data = await res.json();
-      //   setSubjects(data);
-      console.log("subjects");
+    async function fetchCourses() {
+      const res = await fetch(`/api/course/by-degree/${selectedDegree}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => setCourses(data.data))
+        .catch((err) => console.error(err));
     }
 
-    fetchSubjects();
-  }, [setSubjects]);
+    fetchCourses();
+  }, [selectedDegree]);
 
-  function createSubject(data: SubjectFormModel) {}
+  async function createSubject(data: SubjectFormModel) {
+    try {
+      if (data.course === "") {
+        alert("Please select a course");
+        return;
+      }
+      console.log("data from form:", data);
+      const res = await fetch("/api/subject", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+    } catch (error) {}
+  }
 
   return (
     <div>
@@ -60,7 +76,6 @@ function AddSubjectForm() {
               id="degreeLevel"
               required
               className="h-15 w-1/2 indent-3 border border-inputBorder rounded-xl"
-              defaultValue={DegreeLevel.Bachelors}
               {...register("degreeLevel")}
             >
               {Object.values(DegreeLevel).map((level) => (
@@ -79,14 +94,16 @@ function AddSubjectForm() {
               id="course"
               required
               className="h-15 w-1/2 indent-3 border border-inputBorder rounded-xl"
-              defaultValue=""
               {...register("course")}
             >
-              {/* {subjects.map((subject) => (
-                <option key={subject.code} value={subject.code}>
-                  {subject.title}
+              <option value="" disabled>
+                Select a course
+              </option>
+              {courses.map((course) => (
+                <option key={course.code} value={course.code}>
+                  {course.name}
                 </option>
-              ))} */}
+              ))}
             </select>
           </div>
 

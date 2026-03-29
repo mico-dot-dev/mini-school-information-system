@@ -5,7 +5,7 @@ export const SubjectFormSchema = z.object({
   code: z.string(),
   title: z.string(),
   units: z.number().min(0),
-  DegreeLevel: z.nativeEnum(DegreeLevel),
+  degreeLevel: z.nativeEnum(DegreeLevel),
   course: z.string(),
 });
 
