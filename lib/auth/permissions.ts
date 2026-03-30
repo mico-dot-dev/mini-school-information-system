@@ -1,44 +1,45 @@
-// CRUD Permissions
+export const Permission = {
+  // course
+  course_view: "course.view",
+  course_create: "course.create",
+  course_update: "course.update",
+  course_delete: "course.delete",
 
-export type Permission =
-  // Course
-  | "view_course"
-  | "create_course"
-  | "update_course"
-  | "delete_course"
+  // student
+  student_view: "student.view",
+  student_create: "student.create",
+  student_update: "student.update",
+  student_delete: "student.delete",
 
-  // Student
-  | "view_student"
-  | "create_student"
-  | "update_student"
-  | "delete_student"
+  // subject
+  subject_view: "subject.view",
+  subject_create: "subject.create",
+  subject_update: "subject.update",
+  subject_delete: "subject.delete",
 
-  // Subject
-  | "view_subject"
-  | "create_subject"
-  | "update_subject"
-  | "delete_subject"
+  // user
+  user_view: "user.view",
+  user_create: "user.create",
+  user_update: "user.update",
+  user_delete: "user.delete",
 
-  // User
-  | "view_user"
-  | "create_user"
-  | "update_user"
-  | "delete_user"
+  // grade
+  grade_view: "grade.view",
+  grade_create: "grade.create",
+  grade_update: "grade.update",
+  grade_delete: "grade.delete",
 
-  // Grade
-  | "view_grade"
-  | "create_grade"
-  | "update_grade"
-  | "delete_grade"
+  // subject prerequisite
+  subject_prerequisite_view: "subject_prerequisite.view",
+  subject_prerequisite_create: "subject_prerequisite.create",
+  subject_prerequisite_update: "subject_prerequisite.update",
+  subject_prerequisite_delete: "subject_prerequisite.delete",
 
-  // Subject Prerequisites
-  | "view_subject_prerequisite"
-  | "create_subject_prerequisite"
-  | "update_subject_prerequisite"
-  | "delete_subject_prerequisite"
+  // subject reservation
+  subject_reservation_view: "subject_reservation.view",
+  subject_reservation_create: "subject_reservation.create",
+  subject_reservation_update: "subject_reservation.update",
+  subject_reservation_delete: "subject_reservation.delete",
+} as const;
 
-  // Subject Reservations
-  | "view_subject_reservation"
-  | "create_subject_reservation"
-  | "update_subject_reservation"
-  | "delete_subject_reservation";
+export type Permission = (typeof Permission)[keyof typeof Permission];

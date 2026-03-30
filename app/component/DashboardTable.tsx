@@ -10,12 +10,26 @@ import {
   DialogPanel,
   DialogTitle,
 } from "@headlessui/react";
+import { useRouter } from "next/navigation";
+import { has_role_permission } from "@/lib/auth/rbac";
+import { Permission } from "@/lib/auth/permissions";
+import { Role } from "@/lib/enum/role";
 
 function DashboardTable({ page }: { page: string }) {
+  const router = useRouter();
+  let permissionKey = page.toLowerCase();
+  if (permissionKey !== "audit") permissionKey = permissionKey.slice(0, -1);
+  permissionKey += "_create";
+
+  const insertRequiredPermission =
+    Permission[permissionKey as keyof typeof Permission];
+
+  //Tempory, flow would be changed to a more secure api connection after some time
+  const userRole = Role.SuperAdmin;
   const [showModal, setShowModal] = useState(false);
 
   function AddRedirect() {
-    window.location.href = "/dashboard/" + page + "/add";
+    router.push("/dashboard/" + page + "/add");
   }
 
   return (
@@ -35,12 +49,15 @@ function DashboardTable({ page }: { page: string }) {
             >
               <FaFilter className="" />
             </button>
-            <button
-              className="bg-button px-15 rounded-xl cursor-pointer"
-              onClick={AddRedirect}
-            >
-              Add {page}
-            </button>
+            {/* Checks the users role to see if they have permission to insert data on the given page */}
+            {has_role_permission(userRole, insertRequiredPermission) && (
+              <button
+                className="bg-button px-15 rounded-xl cursor-pointer"
+                onClick={AddRedirect}
+              >
+                Add {page}
+              </button>
+            )}
           </div>
         </header>
 
@@ -105,8 +122,8 @@ function DashboardTable({ page }: { page: string }) {
           </div>
         </footer>
       </div>
-      {/* Modal for the sorting, dynamically changes content based on the current page */}
 
+      {/* Modal for the sorting, dynamically changes content based on the current page */}
       <Dialog open={showModal} onClose={setShowModal}>
         <DialogBackdrop
           transition
