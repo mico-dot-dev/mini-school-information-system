@@ -32,7 +32,9 @@ export async function GetUserRole() {
     const { data: serverUser, error } = await supabaseServer.auth.getUser();
     const user = serverUser.user;
 
-    const userRole = await prisma.user.findFirst({
+    //Causes Vercel host problems
+    //Probable Cause: RLS
+    const userRole = await prisma.user.findUnique({
       where: { email: user?.email || undefined },
       select: { role: true },
     });
