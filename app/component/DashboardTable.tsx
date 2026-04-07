@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { CiSearch } from "react-icons/ci";
 import { FaFilter } from "react-icons/fa";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
@@ -15,17 +15,64 @@ import { has_role_permission } from "@/lib/auth/rbac";
 import { Permission } from "@/lib/auth/permissions";
 import { Role } from "@/lib/enum/role";
 
+import DataTable from "./DataTable";
+import { tableConfigModel, TableConfigSchema } from "@/lib/model/table-config";
+import { CourseFormModel } from "@/lib/model/course";
+
 function DashboardTable({ page }: { page: string }) {
+  const contentPage =
+    page.toLowerCase() === "audit"
+      ? page.toLowerCase()
+      : page.slice(0, -1).toLowerCase();
   const router = useRouter();
-  let permissionKey = page.toLowerCase();
-  if (permissionKey !== "audit") permissionKey = permissionKey.slice(0, -1);
-  permissionKey += "_create";
 
-  const insertRequiredPermission =
-    Permission[permissionKey as keyof typeof Permission];
+  //Used to provide the key for create permission
+  const createPermissionKey: Permission =
+    Permission[(contentPage + "_create") as keyof typeof Permission];
 
-  //Tempory, flow would be changed to a more secure api connection after some time
-  const userRole = Role.SuperAdmin;
+  const [userRole, setUserRole] = useState<Role | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  type TableKey = keyof typeof tableConfigModel;
+  const [pg, setPg] = useState<TableKey>("Courses");
+  const tableSchema = tableConfigModel[pg];
+  const [tableData, setTableData] = useState(tableSchema?.data ?? []);
+
+  // runs once when component mounts
+  useEffect(() => {
+    //asigns the user role on load
+    async function fetchUserRole() {
+      const res = await fetch("/api/auth/user-role", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => setUserRole(data.data))
+        .catch((err) => console.error(err));
+    }
+
+    //loads the data for the corresponding page
+    async function fetchTableData() {
+      const res = await fetch(`/api/${contentPage}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          setTableData(data.course as CourseFormModel[]);
+        })
+        .catch((err) => console.error(err));
+    }
+
+    Promise.all([fetchUserRole(), fetchTableData()]).then(() => {
+      setLoading(false);
+    });
+  }, []);
+
   const [showModal, setShowModal] = useState(false);
 
   function AddRedirect() {
@@ -49,8 +96,9 @@ function DashboardTable({ page }: { page: string }) {
             >
               <FaFilter className="" />
             </button>
-            {/* Checks the users role to see if they have permission to insert data on the given page */}
-            {has_role_permission(userRole, insertRequiredPermission) && (
+            Checks the users role to see if they have permission to insert data
+            on the given page
+            {has_role_permission(userRole!, createPermissionKey) && (
               <button
                 className="bg-button px-15 rounded-xl cursor-pointer"
                 onClick={AddRedirect}
@@ -62,7 +110,22 @@ function DashboardTable({ page }: { page: string }) {
         </header>
 
         {/* Table */}
-        <div className="mb-10 rounded-xl overflow-hidden border border-tableBodyOutline">
+
+        {loading ? (
+          <div className="flex justify-center items-center h-64">
+            <p className="text-lg">Loading...</p>
+          </div>
+        ) : tableSchema?.columns ? (
+          <DataTable columns={tableSchema.columns} data={tableData} />
+        ) : (
+          <div className="flex justify-center items-center h-64">
+            <p className="text-lg">
+              No table configuration available for {page}.
+            </p>
+          </div>
+        )}
+
+        {/* <div className="mb-10 rounded-xl overflow-hidden border border-tableBodyOutline">
           <table className="w-full overflow-x-auto text-left ">
             <thead className="bg-tableHead border border-tableHeadOutline ">
               <tr>
@@ -80,6 +143,7 @@ function DashboardTable({ page }: { page: string }) {
                 </th>
               </tr>
             </thead>
+
             <tbody className="bg-white ">
               <tr>
                 <th scope="col" className="px-5 py-3">
@@ -97,7 +161,7 @@ function DashboardTable({ page }: { page: string }) {
               </tr>
             </tbody>
           </table>
-        </div>
+        </div> */}
 
         {/* Table Slider */}
         <footer className="flex flex-row justify-between text-xl font-normal">

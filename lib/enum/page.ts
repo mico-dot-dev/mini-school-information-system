@@ -16,10 +16,4 @@ export const PagePermissions: Record<Page, Permission> = {
   Subjects: Permission.subject_view,
   Users: Permission.user_view,
   Audit: Permission.user_view,
-
-  // [Page.Courses]: "view_course",
-  // [Page.Users]: "view_user",
-  // [Page.Subjects]: "view_subject",
-  // [Page.Students]: "view_student",
-  // [Page.Audit]: "view_user",
 };

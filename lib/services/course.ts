@@ -26,6 +26,35 @@ export async function CreateCourse(courseForm: CourseFormModel) {
   }
 }
 
+export async function GetAllCourse() {
+  try {
+    const data = await prisma.course.findMany({
+      select: {
+        code: true,
+        name: true,
+        description: true,
+        degree_level: {
+          select: {
+            title: true,
+          },
+        },
+      },
+    });
+
+    //Flattens the variable to mathc the course model
+    const formattedCourse: CourseFormModel[] = data.map((d) => ({
+      code: d.code,
+      name: d.name,
+      description: d.description,
+      degreeLevel: d.degree_level?.title as DegreeLevel,
+    }));
+
+    return formattedCourse;
+  } catch (error) {
+    console.log("Error in service" + error);
+  }
+}
+
 export async function GetCoursesByDegree(degree: DegreeLevel) {
   try {
     const courses = await prisma.degree_level.findMany({
@@ -41,6 +70,7 @@ export async function GetCoursesByDegree(degree: DegreeLevel) {
       },
     });
 
+    //Formats the course to match the model, flattening the structure of the var and assigning the degree
     const formattedCourses: CourseFormModel[] = courses.map((course) => ({
       ...course.course[0],
       degreeLevel: degree as DegreeLevel,
