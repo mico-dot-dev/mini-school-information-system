@@ -1,7 +1,8 @@
 import React from "react";
 import { notFound } from "next/navigation";
-import DashboardTable from "@/app/component/DashboardTable";
 import { Page } from "@/lib/enum/page";
+import DashboardTable from "@/app/component/DashboardTable";
+import { TableKey } from "@/lib/table/table-config";
 
 interface DashboardPageProps {
   params: { page: string };
@@ -17,7 +18,7 @@ export default async function MainPage({ params }: DashboardPageProps) {
   return (
     <div className="flex flex-col w-full h-full">
       <p className="text-4xl mb-10">{page}</p>
-      <DashboardTable page={page} />
+      <DashboardTable page={page as TableKey} />
     </div>
   );
 }

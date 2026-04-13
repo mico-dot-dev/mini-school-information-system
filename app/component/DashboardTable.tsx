@@ -1,25 +1,23 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
 import { CiSearch } from "react-icons/ci";
 import { FaFilter } from "react-icons/fa";
 import { FaArrowLeftLong, FaArrowRightLong } from "react-icons/fa6";
-import {
-  Dialog,
-  DialogBackdrop,
-  DialogPanel,
-  DialogTitle,
-} from "@headlessui/react";
-import { useRouter } from "next/navigation";
+
+//Separate this to its own component later
 import { has_role_permission } from "@/lib/auth/rbac";
 import { Permission } from "@/lib/auth/permissions";
 import { Role } from "@/lib/enum/role";
 
+//Table
+import { tableConfigModel, TableKey } from "@/lib/table/table-config";
+import { useTableData } from "@/lib/hooks/useTableData";
 import DataTable from "./DataTable";
-import { tableConfigModel, TableConfigSchema } from "@/lib/model/table-config";
-import { CourseFormModel } from "@/lib/model/course";
 
-function DashboardTable({ page }: { page: string }) {
+function DashboardTable({ page }: { page: TableKey }) {
   const contentPage =
     page.toLowerCase() === "audit"
       ? page.toLowerCase()
@@ -33,14 +31,12 @@ function DashboardTable({ page }: { page: string }) {
   const [userRole, setUserRole] = useState<Role | null>(null);
   const [loading, setLoading] = useState(true);
 
-  type TableKey = keyof typeof tableConfigModel;
-  const [pg, setPg] = useState<TableKey>("Courses");
-  const tableSchema = tableConfigModel[pg];
-  const [tableData, setTableData] = useState(tableSchema?.data ?? []);
-
+  //Table
+  const dataColumns = tableConfigModel[page];
+  const tableData = useTableData(contentPage);
   // runs once when component mounts
   useEffect(() => {
-    //asigns the user role on load
+    // asigns the user role on load
     async function fetchUserRole() {
       const res = await fetch("/api/auth/user-role", {
         method: "GET",
@@ -53,27 +49,10 @@ function DashboardTable({ page }: { page: string }) {
         .catch((err) => console.error(err));
     }
 
-    //loads the data for the corresponding page
-    async function fetchTableData() {
-      const res = await fetch(`/api/${contentPage}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          setTableData(data.course as CourseFormModel[]);
-        })
-        .catch((err) => console.error(err));
-    }
-
-    Promise.all([fetchUserRole(), fetchTableData()]).then(() => {
+    Promise.all([fetchUserRole()]).then(() => {
       setLoading(false);
     });
-  }, []);
-
-  const [showModal, setShowModal] = useState(false);
+  });
 
   function AddRedirect() {
     router.push("/dashboard/" + page + "/add");
@@ -90,10 +69,7 @@ function DashboardTable({ page }: { page: string }) {
             className="border border-inputBorder rounded-xl w-2/5 indent-8 focus:outline-none py-2"
           />
           <div className="flex flex-row text-white ">
-            <button
-              className=" bg-button mr-10 rounded-xl p-3 cursor-pointer "
-              onClick={() => setShowModal(true)}
-            >
+            <button className=" bg-button mr-10 rounded-xl p-3 cursor-pointer ">
               <FaFilter className="" />
             </button>
             Checks the users role to see if they have permission to insert data
@@ -115,8 +91,8 @@ function DashboardTable({ page }: { page: string }) {
           <div className="flex justify-center items-center h-64">
             <p className="text-lg">Loading...</p>
           </div>
-        ) : tableSchema?.columns ? (
-          <DataTable columns={tableSchema.columns} data={tableData} />
+        ) : dataColumns ? (
+          <DataTable columns={dataColumns.columns} data={tableData} />
         ) : (
           <div className="flex justify-center items-center h-64">
             <p className="text-lg">
@@ -124,44 +100,6 @@ function DashboardTable({ page }: { page: string }) {
             </p>
           </div>
         )}
-
-        {/* <div className="mb-10 rounded-xl overflow-hidden border border-tableBodyOutline">
-          <table className="w-full overflow-x-auto text-left ">
-            <thead className="bg-tableHead border border-tableHeadOutline ">
-              <tr>
-                <th scope="col" className="px-5 py-3 w-30">
-                  Email
-                </th>
-                <th scope="col" className="px-5 py-3">
-                  Role
-                </th>
-                <th scope="col" className="px-5 py-3">
-                  Added At
-                </th>
-                <th scope="col" className="px-5 py-3">
-                  Action
-                </th>
-              </tr>
-            </thead>
-
-            <tbody className="bg-white ">
-              <tr>
-                <th scope="col" className="px-5 py-3">
-                  belavista@gmail.com
-                </th>
-                <td scope="col" className="px-5 py-3">
-                  Admin
-                </td>
-                <td scope="col" className="px-5 py-3">
-                  September 09, 2000
-                </td>
-                <td scope="col" className="px-5 py-3">
-                  Icon
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div> */}
 
         {/* Table Slider */}
         <footer className="flex flex-row justify-between text-xl font-normal">
@@ -186,25 +124,6 @@ function DashboardTable({ page }: { page: string }) {
           </div>
         </footer>
       </div>
-
-      {/* Modal for the sorting, dynamically changes content based on the current page */}
-      <Dialog open={showModal} onClose={setShowModal}>
-        <DialogBackdrop
-          transition
-          className="fixed inset-0 bg-gray-900/50 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"
-        ></DialogBackdrop>
-
-        <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-          <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <DialogPanel
-              transition
-              className="relative overflow-y-scroll rounded-lg bg-white text-left shadow-xl outline -outline-offset-1 outline-white/10 transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-lg data-closed:sm:translate-y-0 data-closed:sm:scale-95"
-            >
-              <p>Sort</p>
-            </DialogPanel>
-          </div>
-        </div>
-      </Dialog>
     </>
   );
 }

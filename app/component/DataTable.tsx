@@ -1,12 +1,11 @@
 import React from "react";
-import { Column } from "@/lib/model/table-config";
 
-type Props<T> = {
-  columns: Column<T>[];
-  data: T[];
+type Props<TableType> = {
+  columns: { key: keyof TableType; header: string }[];
+  data: TableType[];
 };
 
-function DataTable<T>({ columns, data }: Props<T>) {
+function DataTable<TableType>({ columns, data }: Props<TableType>) {
   return (
     <div className="mb-10 rounded-xl overflow-hidden border border-tableBodyOutline">
       <table className="w-full text-left overflow-x-auto">
