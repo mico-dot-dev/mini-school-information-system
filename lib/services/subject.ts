@@ -4,7 +4,6 @@ import { DegreeLevel } from "../enum/degreeLevel";
 
 export async function CreateSubject(subjectForm: SubjectFormModel) {
   try {
-    console.log(subjectForm);
     const courseId = await prisma.course.findFirstOrThrow({
       where: {
         code: subjectForm.course,
@@ -60,5 +59,27 @@ export async function GetAllSubject() {
     return formattedSubjects;
   } catch (error) {
     console.log("Error getting subjects:", error);
+  }
+}
+
+export async function GetSubjectByCourse(courseCode: string) {
+  try {
+    const subjects = await prisma.subject.findMany({
+      where: {
+        course: {
+          code: courseCode,
+        },
+      },
+      select: {
+        code: true,
+        title: true,
+        units: true,
+      },
+    });
+
+    return subjects;
+  } catch (error) {
+    console.error("Error fetching subjects by course:", error);
+    throw error;
   }
 }

@@ -1,7 +1,7 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import { Page } from "@/lib/enum/page";
-import DashboardTable from "@/app/component/DashboardTable";
+import DashboardTable from "@/app/component/(table)/DashboardTable";
 import { TableKey } from "@/lib/table/table-config";
 
 interface DashboardPageProps {

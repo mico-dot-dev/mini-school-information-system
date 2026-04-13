@@ -5,6 +5,8 @@ import { DegreeLevel } from "@/lib/enum/degreeLevel";
 import { SubjectFormModel, SubjectFormSchema } from "@/lib/model/subject";
 import { CourseFormModel } from "@/lib/model/course";
 import { zodResolver } from "@hookform/resolvers/zod";
+import PrerequisiteConnector from "../modals/PrerequisiteConnector";
+import Swal from "sweetalert2";
 
 function AddSubjectForm() {
   const { register, handleSubmit, watch } = useForm<SubjectFormModel>({
@@ -19,6 +21,7 @@ function AddSubjectForm() {
   });
 
   const selectedDegree = watch("degreeLevel");
+  const selectedCourse = watch("course");
   const [courses, setCourses] = useState<CourseFormModel[]>([]);
 
   useEffect(() => {
@@ -54,6 +57,19 @@ function AddSubjectForm() {
         body: JSON.stringify(data),
       });
     } catch (error) {}
+  }
+
+  const [showPrerequisiteModal, setShowPrerequisiteModal] = useState(false);
+  function prerequisetModal() {
+    if (!selectedCourse) {
+      Swal.fire({
+        icon: "error",
+        title: "No Course Selected",
+        text: "Please select a course before adding prerequisites.",
+      });
+      return;
+    }
+    setShowPrerequisiteModal(true);
   }
 
   return (
@@ -143,10 +159,21 @@ function AddSubjectForm() {
           </div>
 
           <div>
-            <button className="bg-button text-white w-1/4 h-12 rounded-xl cursor-pointer">
+            <button
+              className="bg-button text-white w-1/4 h-12 rounded-xl cursor-pointer"
+              onClick={() => prerequisetModal()}
+            >
               Add Prerequisite
             </button>
           </div>
+
+          {showPrerequisiteModal && selectedCourse && (
+            <PrerequisiteConnector
+              open={showPrerequisiteModal}
+              onClose={() => setShowPrerequisiteModal(false)}
+              course={selectedCourse}
+            />
+          )}
         </div>
 
         <footer className="flex justify-center">

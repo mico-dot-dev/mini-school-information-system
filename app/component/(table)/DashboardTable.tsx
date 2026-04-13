@@ -22,6 +22,7 @@ function DashboardTable({ page }: { page: TableKey }) {
     page.toLowerCase() === "audit"
       ? page.toLowerCase()
       : page.slice(0, -1).toLowerCase();
+
   const router = useRouter();
 
   //Used to provide the key for create permission
@@ -72,8 +73,9 @@ function DashboardTable({ page }: { page: TableKey }) {
             <button className=" bg-button mr-10 rounded-xl p-3 cursor-pointer ">
               <FaFilter className="" />
             </button>
-            Checks the users role to see if they have permission to insert data
-            on the given page
+
+            {/* Checks the users role to see if they have permission to insert data
+            on the given page */}
             {has_role_permission(userRole!, createPermissionKey) && (
               <button
                 className="bg-button px-15 rounded-xl cursor-pointer"

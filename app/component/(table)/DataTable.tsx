@@ -6,8 +6,6 @@ type Props<TableType> = {
 };
 
 function DataTable<TableType>({ columns, data }: Props<TableType>) {
-  console.log("Rendering DataTable with columns:", columns);
-  console.log("Data:", data);
   return (
     <div className="mb-10 rounded-xl overflow-hidden border border-tableBodyOutline">
       <table className="w-full text-left overflow-x-auto">

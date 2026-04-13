@@ -1,8 +1,8 @@
 import React from "react";
-import AddUserForm from "@/app/component/AddUserForm";
-import AddCourseForm from "@/app/component/AddCourseForm";
-import AddSubjectForm from "@/app/component/AddSubjectForm";
-import AddStudentForm from "@/app/component/AddStudentForm";
+import AddUserForm from "@/app/component/(addforms)/AddUserForm";
+import AddCourseForm from "@/app/component/(addforms)/AddCourseForm";
+import AddSubjectForm from "@/app/component/(addforms)/AddSubjectForm";
+import AddStudentForm from "@/app/component/(addforms)/AddStudentForm";
 
 async function page({ params }: { params: Promise<{ page: string }> }) {
   const { page } = await params;

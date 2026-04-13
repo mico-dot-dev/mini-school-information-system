@@ -16,7 +16,11 @@ export async function CreateCourse(courseForm: CourseFormModel) {
         code: courseForm.code,
         name: courseForm.name,
         description: courseForm.description,
-        degree_level_id: degreeLevelId?.id,
+        degree_level: {
+          connect: {
+            id: degreeLevelId?.id,
+          },
+        },
       },
     });
     return course;
@@ -71,10 +75,12 @@ export async function GetCoursesByDegree(degree: DegreeLevel) {
     });
 
     //Formats the course to match the model, flattening the structure of the var and assigning the degree
-    const formattedCourses: CourseFormModel[] = courses.map((course) => ({
-      ...course.course[0],
-      degreeLevel: degree as DegreeLevel,
-    }));
+    const formattedCourses: CourseFormModel[] = courses[0].course.map(
+      (course) => ({
+        ...course,
+        degreeLevel: degree as DegreeLevel,
+      }),
+    );
 
     return formattedCourses;
   } catch (error) {
