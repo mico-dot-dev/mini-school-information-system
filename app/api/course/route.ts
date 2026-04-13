@@ -18,7 +18,7 @@ export async function GET(request: Request) {
     const data = await GetAllCourse();
     const formattedCourse: CourseFormModel[] =
       CourseFormSchema.array().parse(data);
-    return new Response(JSON.stringify({ course: formattedCourse }), {
+    return new Response(JSON.stringify({ data: formattedCourse }), {
       status: 201,
     });
   } catch (error) {

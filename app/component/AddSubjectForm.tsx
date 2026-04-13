@@ -5,7 +5,6 @@ import { DegreeLevel } from "@/lib/enum/degreeLevel";
 import { SubjectFormModel, SubjectFormSchema } from "@/lib/model/subject";
 import { CourseFormModel } from "@/lib/model/course";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Dialog, DialogBackdrop, DialogPanel } from "@headlessui/react";
 
 function AddSubjectForm() {
   const { register, handleSubmit, watch } = useForm<SubjectFormModel>({
@@ -21,8 +20,6 @@ function AddSubjectForm() {
 
   const selectedDegree = watch("degreeLevel");
   const [courses, setCourses] = useState<CourseFormModel[]>([]);
-
-  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     if (!selectedDegree) return;
@@ -132,11 +129,21 @@ function AddSubjectForm() {
             />
           </div>
 
+          <div className="flex flex-col gap-3">
+            <label htmlFor="units">
+              Subject Units <span className="text-redAlert">*</span>
+            </label>
+            <input
+              type="number"
+              id="units"
+              required
+              className="h-15 w-1/2 indent-3 border border-inputBorder rounded-xl"
+              {...register("units")}
+            />
+          </div>
+
           <div>
-            <button
-              className="bg-button text-white w-1/4 h-12 rounded-xl cursor-pointer"
-              onClick={() => setShowModal(true)}
-            >
+            <button className="bg-button text-white w-1/4 h-12 rounded-xl cursor-pointer">
               Add Prerequisite
             </button>
           </div>
@@ -150,24 +157,6 @@ function AddSubjectForm() {
             Add Subject
           </button>
         </footer>
-
-        <Dialog open={showModal} onClose={setShowModal}>
-          <DialogBackdrop
-            transition
-            className="fixed inset-0 bg-gray-900/50 transition-opacity data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in"
-          ></DialogBackdrop>
-
-          <div className="fixed inset-0 z-10 w-screen overflow-y-auto">
-            <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-              <DialogPanel
-                transition
-                className="relative overflow-y-scroll rounded-lg bg-white text-left shadow-xl outline -outline-offset-1 outline-white/10 transition-all data-closed:translate-y-4 data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out data-leave:duration-200 data-leave:ease-in sm:my-8 sm:w-full sm:max-w-lg data-closed:sm:translate-y-0 data-closed:sm:scale-95"
-              >
-                <p>Available Subjects to link</p>
-              </DialogPanel>
-            </div>
-          </div>
-        </Dialog>
       </form>
     </div>
   );

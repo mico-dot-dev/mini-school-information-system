@@ -1,5 +1,5 @@
 import { SubjectFormModel, SubjectFormSchema } from "@/lib/model/subject";
-import { CreateSubject } from "@/lib/services/subject";
+import { CreateSubject, GetAllSubject } from "@/lib/services/subject";
 
 export async function POST(request: Request) {
   try {
@@ -22,5 +22,15 @@ export async function POST(request: Request) {
         "Content-Type": "application/json",
       },
     });
+  }
+}
+
+export async function GET(request: Request) {
+  try {
+    const subjects = await GetAllSubject();
+
+    return new Response(JSON.stringify({ data: subjects }));
+  } catch (error) {
+    console.log("Error in GET subjects:", error);
   }
 }

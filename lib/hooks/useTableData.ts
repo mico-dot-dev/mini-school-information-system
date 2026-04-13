@@ -12,7 +12,7 @@ export function useTableData(page: string) {
           },
         });
         const data = await res.json();
-        setTableData(await data.course);
+        setTableData(await data.data);
       } catch (err) {
         console.error("Error fetching table data: ", err);
       }
