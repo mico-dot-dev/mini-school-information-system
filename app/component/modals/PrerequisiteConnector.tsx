@@ -35,18 +35,39 @@ function PrerequisiteConnector({ open, onClose, course }: Props) {
     <Dialog open={open} onClose={onClose}>
       <DialogBackdrop className="fixed inset-0 bg-black/50" />
 
-      <div className="fixed inset-0 flex items-center justify-center">
-        <DialogPanel className="bg-white p-6 rounded-xl w-96">
-          <DialogTitle className="text-lg font-semibold mb-4">
+      <div className="absolute inset-0 self-center justify-self-center h-11/12 w-1/2">
+        <DialogPanel className="bg-white p-6 rounded-xl h-full w-full">
+          <DialogTitle className="text-2xl font-bold mb-4">
             Assign Subjects for Prerequisite
           </DialogTitle>
 
-          <div>Subjects available for {course}</div>
+          <p className="mb-4 text-xl">Subjects available for {course}</p>
+          <form action="" className="mb-4">
+            <fieldset className="flex flex-col gap-5 text-lg">
+              {subjects &&
+                subjects.map((subject: any) => (
+                  <div className="flex">
+                    <input
+                      type="checkbox"
+                      name=""
+                      id={subject.code}
+                      className="mr-3 "
+                    />
+                    <label htmlFor={subject.code}>{subject.title}</label>
+                  </div>
+                ))}
+            </fieldset>
+          </form>
 
-          {subjects &&
-            subjects.map((subject: any) => (
-              <div key={subject.code}>{subject.title}</div>
-            ))}
+          <footer className="mt-4 flex justify-center">
+            <button
+              type="button"
+              className="bg-button text-white w-3/4 h-10 rounded-md"
+              onClick={onClose}
+            >
+              Save
+            </button>
+          </footer>
         </DialogPanel>
       </div>
     </Dialog>
