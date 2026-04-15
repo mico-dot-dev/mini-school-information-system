@@ -7,7 +7,12 @@ export async function GET(
   const { course } = await params;
   try {
     const subjects = await GetSubjectByCourse(course);
-    return Response.json(subjects);
+    const safeData = JSON.parse(
+      JSON.stringify(subjects, (_, value) =>
+        typeof value === "bigint" ? value.toString() : value,
+      ),
+    );
+    return Response.json(safeData);
   } catch (error) {
     console.error("Error fetching subjects by course:", error);
     return Response.json(

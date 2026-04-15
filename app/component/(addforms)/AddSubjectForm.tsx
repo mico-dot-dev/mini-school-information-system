@@ -9,20 +9,25 @@ import PrerequisiteConnector from "../modals/PrerequisiteConnector";
 import Swal from "sweetalert2";
 
 function AddSubjectForm() {
-  const { register, handleSubmit, watch } = useForm<SubjectFormModel>({
-    resolver: zodResolver(SubjectFormSchema),
-    defaultValues: {
-      code: "",
-      title: "",
-      units: 0,
-      degreeLevel: DegreeLevel.Bachelors,
-      course: "",
+  const { register, handleSubmit, setValue, watch } = useForm<SubjectFormModel>(
+    {
+      resolver: zodResolver(SubjectFormSchema),
+      defaultValues: {
+        code: "",
+        title: "",
+        units: 0,
+        degreeLevel: DegreeLevel.Bachelors,
+        course: "",
+        prerequisites: [],
+      },
     },
-  });
+  );
 
   const selectedDegree = watch("degreeLevel");
   const selectedCourse = watch("course");
   const [courses, setCourses] = useState<CourseFormModel[]>([]);
+
+  const selectedPrerequisites = watch("prerequisites") || [];
 
   useEffect(() => {
     if (!selectedDegree) return;
@@ -48,7 +53,7 @@ function AddSubjectForm() {
         alert("Please select a course");
         return;
       }
-      console.log("data from form:", data);
+
       const res = await fetch("/api/subject", {
         method: "POST",
         headers: {
@@ -154,9 +159,23 @@ function AddSubjectForm() {
               id="units"
               required
               className="h-15 w-1/2 indent-3 border border-inputBorder rounded-xl"
-              {...register("units")}
+              {...register("units", { valueAsNumber: true })}
             />
           </div>
+
+          {selectedPrerequisites?.length > 0 && (
+            <div className="flex flex-col gap-3 w-1/2">
+              <label htmlFor="prerequisites">Prerequisites</label>
+              {selectedPrerequisites.map((code) => (
+                <span
+                  key={code}
+                  className="bg-button text-white text-xl p-3 rounded"
+                >
+                  {code}
+                </span>
+              ))}
+            </div>
+          )}
 
           <div>
             <button
@@ -172,6 +191,9 @@ function AddSubjectForm() {
               open={showPrerequisiteModal}
               onClose={() => setShowPrerequisiteModal(false)}
               course={selectedCourse}
+              selectedPrerequisites={(ids) => {
+                setValue("prerequisites", ids); // ✅ update form
+              }}
             />
           )}
         </div>

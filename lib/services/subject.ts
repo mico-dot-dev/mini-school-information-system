@@ -11,7 +11,7 @@ export async function CreateSubject(subjectForm: SubjectFormModel) {
       select: { id: true },
     });
 
-    const subject = prisma.subject.create({
+    const subject = await prisma.subject.create({
       data: {
         code: subjectForm.code,
         title: subjectForm.title,
@@ -19,6 +19,17 @@ export async function CreateSubject(subjectForm: SubjectFormModel) {
         course_id: courseId.id,
       },
     });
+
+    await prisma.$transaction(
+      (subjectForm.prerequisites ?? []).map((prerequisiteId) =>
+        prisma.subject_prerequisite.create({
+          data: {
+            subject_id: subject.id,
+            prerequisites_subject_id: BigInt(prerequisiteId),
+          },
+        }),
+      ),
+    );
 
     console.log(subject);
     return subject;
@@ -71,12 +82,11 @@ export async function GetSubjectByCourse(courseCode: string) {
         },
       },
       select: {
+        id: true,
         code: true,
         title: true,
-        units: true,
       },
     });
-
     return subjects;
   } catch (error) {
     console.error("Error fetching subjects by course:", error);

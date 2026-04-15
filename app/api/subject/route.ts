@@ -3,6 +3,7 @@ import { CreateSubject, GetAllSubject } from "@/lib/services/subject";
 
 export async function POST(request: Request) {
   try {
+    console.log("Received POST request to create subject");
     const data = await request.json();
     const parsedData: SubjectFormModel = SubjectFormSchema.parse(data);
     const subject = await CreateSubject(parsedData);
